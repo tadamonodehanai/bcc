@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)file:///Users/whiteleek/Downloads/BCC_MVV_Roadmap.html -->
+<html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BCC MVV+C 策定ロードマップ</title>
+<link href="./BCC MVV+C 策定ロードマップ_files/css2" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a18;
+    --ink-mid: #4a4a45;
+    --ink-light: #9a9a90;
+    --paper: #f5f3ee;
+    --paper-warm: #ede9e0;
+    --accent: #2a4a7f;
+    --accent-light: #e8eef8;
+    --done: #2d6a4f;
+    --done-bg: #eaf4ee;
+    --wip: #b5540a;
+    --wip-bg: #fdf0e6;
+    --open: #6b6b60;
+    --open-bg: #f0eeea;
+    --line: rgba(26,26,24,0.12);
+  }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.8;
+    min-height: 100vh;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 60px 40px 100px;
+  }
+
+  /* header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 48px;
+  }
+
+  .header-left {}
+  .brand {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--ink-light);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  .title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+
+  .mission-chip {
+    margin-top: 16px;
+    display: inline-block;
+    font-family: 'Shippori Mincho', serif;
+    font-size: 18px;
+    color: var(--accent);
+    border-left: 3px solid var(--accent);
+    padding-left: 12px;
+    line-height: 1.5;
+  }
+
+  .header-right {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .date {
+    font-size: 11px;
+    color: var(--ink-light);
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+  .status-row {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+  .badge {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: 2px;
+  }
+  .badge-done { background: var(--done-bg); color: var(--done); }
+  .badge-wip { background: var(--wip-bg); color: var(--wip); }
+  .badge-open { background: var(--open-bg); color: var(--open); }
+
+  /* section label */
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--ink-light);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 0.5px solid var(--line);
+  }
+
+  /* framework */
+  .framework {
+    margin-bottom: 56px;
+  }
+
+  .fw-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .fw-card {
+    background: white;
+    border: 0.5px solid var(--line);
+    border-radius: 4px;
+    padding: 20px 22px;
+    position: relative;
+  }
+
+  .fw-card.full { grid-column: 1 / -1; }
+  .fw-card.accent-border { border-left: 3px solid var(--accent); }
+
+  .fw-number {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--ink-light);
+    margin-bottom: 6px;
+  }
+
+  .fw-name {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .fw-en {
+    font-size: 10px;
+    color: var(--ink-light);
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+
+  .fw-desc {
+    font-size: 12px;
+    color: var(--ink-mid);
+    line-height: 1.7;
+  }
+
+  .fw-output {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 0.5px solid var(--line);
+  }
+
+  .fw-output-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+
+  .fw-output-label {
+    font-size: 10px;
+    color: var(--ink-light);
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+    width: 80px;
+  }
+
+  .fw-output-val {
+    font-size: 12px;
+    color: var(--ink-mid);
+  }
+
+  .fw-status {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+  }
+
+  /* roadmap */
+  .roadmap { margin-bottom: 56px; }
+
+  .session {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 0;
+    margin-bottom: 2px;
+  }
+
+  .session-left {
+    padding: 24px 20px 24px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    border-right: 1.5px solid var(--line);
+    position: relative;
+  }
+
+  .session-num {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 22px;
+    color: var(--ink-light);
+    line-height: 1;
+  }
+
+  .session-dot {
+    position: absolute;
+    right: -5px;
+    top: 30px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 1.5px solid var(--line);
+  }
+
+  .session-dot.done { background: var(--done); border-color: var(--done); }
+  .session-dot.wip { background: var(--wip); border-color: var(--wip); }
+  .session-dot.next { background: var(--accent); border-color: var(--accent); }
+
+  .session-right {
+    padding: 20px 0 20px 28px;
+  }
+
+  .session-tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    padding: 2px 8px;
+    border-radius: 2px;
+    margin-bottom: 8px;
+  }
+
+  .session-tag.done { background: var(--done-bg); color: var(--done); }
+  .session-tag.wip { background: var(--wip-bg); color: var(--wip); }
+  .session-tag.next { background: var(--accent-light); color: var(--accent); }
+  .session-tag.open { background: var(--open-bg); color: var(--open); }
+
+  .session-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .session-goal {
+    font-size: 12px;
+    color: var(--ink-mid);
+    margin-bottom: 12px;
+  }
+
+  .session-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .session-items li {
+    font-size: 12px;
+    color: var(--ink-mid);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .session-items li::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--ink-light);
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+
+  .session-divider {
+    border-top: 0.5px solid var(--line);
+    margin-top: 12px;
+    padding-top: 12px;
+  }
+
+  .session-must {
+    font-size: 11px;
+    color: var(--ink-light);
+  }
+
+  .session-must strong {
+    color: var(--ink-mid);
+    font-weight: 500;
+  }
+
+  /* design principle */
+  .principles {
+    background: var(--paper-warm);
+    border-radius: 4px;
+    padding: 24px 28px;
+    margin-bottom: 56px;
+  }
+
+  .principles-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 13px;
+    color: var(--ink-mid);
+    margin-bottom: 16px;
+  }
+
+  .principle-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 24px;
+  }
+
+  .principle-list li {
+    font-size: 12px;
+    color: var(--ink-mid);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .principle-list li span.mark {
+    color: var(--accent);
+    font-size: 14px;
+    line-height: 1.5;
+    flex-shrink: 0;
+  }
+
+  /* dna */
+  .dna-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 56px;
+  }
+
+  .dna-card {
+    background: white;
+    border: 0.5px solid var(--line);
+    border-radius: 4px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .dna-jp {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 15px;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+
+  .dna-en {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--ink-light);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  .dna-role {
+    font-size: 10px;
+    color: var(--ink-mid);
+    line-height: 1.6;
+  }
+
+  /* footer */
+  .footer {
+    border-top: 1px solid var(--line);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-note {
+    font-size: 11px;
+    color: var(--ink-light);
+  }
+
+  .footer-count {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 13px;
+    color: var(--ink-mid);
+  }
+
+  @media (max-width: 640px) {
+    .page { padding: 32px 20px 60px; }
+    .fw-grid { grid-template-columns: 1fr; }
+    .dna-row { grid-template-columns: 1fr 1fr; }
+    .principle-list { grid-template-columns: 1fr; }
+    .header { flex-direction: column; gap: 20px; }
+    .header-right { text-align: left; }
+    .status-row { justify-content: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- header -->
+  <div class="header">
+    <div class="header-left">
+      <div class="brand">BCC Holdings — Internal</div>
+      <div class="title">MVV+C 策定ロードマップ</div>
+      <div class="mission-chip">歩みを、とめない。</div>
+    </div>
+    <div class="header-right">
+      <div class="date">2026.04</div>
+      <div class="status-row">
+        <span class="badge badge-done">Mission 確定</span>
+        <span class="badge badge-wip">Vision 進行中</span>
+        <span class="badge badge-open">Concept / Value 未着手</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- framework -->
+  <div class="framework">
+    <div class="section-label">完成形のフレームワーク構造</div>
+    <div class="fw-grid">
+
+      <div class="fw-card accent-border">
+        <div class="fw-status"><span class="badge badge-done">確定</span></div>
+        <div class="fw-number">01</div>
+        <div class="fw-name">ミッション</div>
+        <div class="fw-en">Mission</div>
+        <div class="fw-desc">なぜ、BCCは存在するのか。変わらない使命の宣言。</div>
+        <div class="fw-output">
+          <div class="fw-output-row">
+            <span class="fw-output-label">短句</span>
+            <span class="fw-output-val">歩みを、とめない。</span>
+          </div>
+          <div class="fw-output-row">
+            <span class="fw-output-label">ショルダー</span>
+            <span class="fw-output-val">40〜60字 — 策定中</span>
+          </div>
+          <div class="fw-output-row">
+            <span class="fw-output-label">ステートメント</span>
+            <span class="fw-output-val">120〜180字 — 策定中</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="fw-card">
+        <div class="fw-status"><span class="badge badge-wip">進行中</span></div>
+        <div class="fw-number">02</div>
+        <div class="fw-name">ビジョン</div>
+        <div class="fw-en">Vision</div>
+        <div class="fw-desc">ミッションが実現した先に広がる、具体的な社会の風景。BCCが主語にならない状態の描写。</div>
+        <div class="fw-output">
+          <div class="fw-output-row">
+            <span class="fw-output-label">短句</span>
+            <span class="fw-output-val">連鎖型・風景型で検討中</span>
+          </div>
+          <div class="fw-output-row">
+            <span class="fw-output-label">ステートメント</span>
+            <span class="fw-output-val">Vision確定後に展開</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="fw-card">
+        <div class="fw-status"><span class="badge badge-open">未着手</span></div>
+        <div class="fw-number">03</div>
+        <div class="fw-name">コンセプト</div>
+        <div class="fw-en">Concept</div>
+        <div class="fw-desc">BCCの独自の公式。バリューを生み出す仕組みと思想をワンフレーズで定義する。</div>
+        <div class="fw-output">
+          <div class="fw-output-row">
+            <span class="fw-output-label">短句</span>
+            <span class="fw-output-val">ワンフレーズ</span>
+          </div>
+          <div class="fw-output-row">
+            <span class="fw-output-label">50字版</span>
+            <span class="fw-output-val">概念の簡潔な説明</span>
+          </div>
+          <div class="fw-output-row">
+            <span class="fw-output-label">300字版</span>
+            <span class="fw-output-val">思想の詳細展開</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="fw-card">
+        <div class="fw-status"><span class="badge badge-open">未着手</span></div>
+        <div class="fw-number">04</div>
+        <div class="fw-name">バリュー</div>
+        <div class="fw-en">Value</div>
+        <div class="fw-desc">社会・ステークホルダーへの約束。ビジョン達成に向けた行動指針を、具体的なコミットメントとして言語化する。軸の数はConceptの設計から導出。</div>
+        <div class="fw-output">
+          <div class="fw-output-row">
+            <span class="fw-output-label">軸数</span>
+            <span class="fw-output-val">Concept設計後に決定（2〜4軸）</span>
+          </div>
+          <div class="fw-output-row">
+            <span class="fw-output-label">各軸</span>
+            <span class="fw-output-val">短句 + ステートメント</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- dna -->
+  <div>
+    <div class="section-label">BCCのDNA — 全要素の基盤</div>
+    <div class="dna-row">
+      <div class="dna-card">
+        <div class="dna-jp">誠実</div>
+        <div class="dna-en">Integrity</div>
+        <div class="dna-role">信頼の地盤。<br>見えない強さ。</div>
+      </div>
+      <div class="dna-card">
+        <div class="dna-jp">創造</div>
+        <div class="dna-en">Creativity</div>
+        <div class="dna-role">未来価値の原動力。<br>組織のエンジン。</div>
+      </div>
+      <div class="dna-card">
+        <div class="dna-jp">躍進</div>
+        <div class="dna-en">Leap Forward</div>
+        <div class="dna-role">DNAのリレー。<br>文化の継承と跳躍。</div>
+      </div>
+      <div class="dna-card">
+        <div class="dna-jp">挑戦</div>
+        <div class="dna-en">Challenge</div>
+        <div class="dna-role">全体を駆動する<br>マインドセット。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- principles -->
+  <div class="principles">
+    <div class="principles-title">設計原則 — 全会議を通じて守るもの</div>
+    <ul class="principle-list">
+      <li><span class="mark">—</span><span>BCCは約束ではなく、姿勢を示す</span></li>
+      <li><span class="mark">—</span><span>烏滸がましさを排除する</span></li>
+      <li><span class="mark">—</span><span>言語はステークホルダー全員の最小公倍数</span></li>
+      <li><span class="mark">—</span><span>Visionにホールディングスの格を持たせる</span></li>
+      <li><span class="mark">—</span><span>定量目標はVision本文に入れない</span></li>
+      <li><span class="mark">—</span><span>Mission と Vision が同じことを言わない</span></li>
+    </ul>
+  </div>
+
+  <!-- roadmap -->
+  <div class="roadmap">
+    <div class="section-label">会議ロードマップ — あと5回</div>
+
+    <!-- session 1 -->
+    <div class="session">
+      <div class="session-left">
+        <span class="session-num">01</span>
+        <div class="session-dot next"></div>
+      </div>
+      <div class="session-right">
+        <span class="session-tag next">Next</span>
+        <div class="session-title">Missionを完成させる</div>
+        <div class="session-goal">「歩みを、とめない。」の短句に、ショルダーコピーとステートメントを添える。</div>
+        <ul class="session-items">
+          <li>「歩み」の定義を固定する（働く・暮らす・変わる・選ぶ、どこまでか）</li>
+          <li>対象の言い方を確定する（「働く人も、暮らす人も」軸で合意形成）</li>
+          <li>ショルダーコピー：1文 40〜60字</li>
+          <li>Mission Statement：120〜180字</li>
+        </ul>
+        <div class="session-divider">
+          <div class="session-must"><strong>Must：</strong>3つのアウトプットを仮確定。VisionとConceptはこの会議では触れない。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- session 2 -->
+    <div class="session">
+      <div class="session-left">
+        <span class="session-num">02</span>
+        <div class="session-dot open"></div>
+      </div>
+      <div class="session-right">
+        <span class="session-tag open">Vision ①</span>
+        <div class="session-title">Visionの核概念と短句を決める</div>
+        <div class="session-goal">「何が連鎖するか」を一語で決め、Vision短句の3案に絞る。</div>
+        <ul class="session-items">
+          <li>連鎖・循環・広がり、どの軸でVisionを設計するかを合意</li>
+          <li>連鎖の主語を一語で決める（一歩・選択・学び・機会・前進…）</li>
+          <li>Vision短句 3案を提示 → 議論で1案に絞る</li>
+          <li>風景メモ：その言葉で何が見えるかを1〜2段落で確認</li>
+        </ul>
+        <div class="session-divider">
+          <div class="session-must"><strong>Must：</strong>Vision短句を1案に仮確定。Statementはまだ書かない。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- session 3 -->
+    <div class="session">
+      <div class="session-left">
+        <span class="session-num">03</span>
+        <div class="session-dot open"></div>
+      </div>
+      <div class="session-right">
+        <span class="session-tag open">Vision ②</span>
+        <div class="session-title">Vision Statementと整合確認</div>
+        <div class="session-goal">VisionをStatement化し、Missionとの役割分担を確認する。</div>
+        <ul class="session-items">
+          <li>Vision Statement：150〜200字で作成・調整</li>
+          <li>Mission「地面」、Vision「景色」の役割分担を確認</li>
+          <li>重複チェック：Missionと同じことを言っていないか</li>
+          <li>格の確認：ホールディングスとして説得力があるか</li>
+        </ul>
+        <div class="session-divider">
+          <div class="session-must"><strong>Must：</strong>Mission + Vision を並べた状態で整合を確定。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- session 4 -->
+    <div class="session">
+      <div class="session-left">
+        <span class="session-num">04</span>
+        <div class="session-dot open"></div>
+      </div>
+      <div class="session-right">
+        <span class="session-tag open">Concept</span>
+        <div class="session-title">Conceptを設計する</div>
+        <div class="session-goal">BCCの独自の公式をワンフレーズで定義し、50字・300字に展開する。</div>
+        <ul class="session-items">
+          <li>DNAの誠実・創造・躍進・挑戦と、どう接続するかを整理</li>
+          <li>短句 3案 → 1案に絞る</li>
+          <li>50字版：概念の簡潔な説明</li>
+          <li>300字版：思想の詳細展開</li>
+        </ul>
+        <div class="session-divider">
+          <div class="session-must"><strong>Must：</strong>短句確定。Value設計の軸数はここで方向が見えてくる。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- session 5 -->
+    <div class="session">
+      <div class="session-left">
+        <span class="session-num">05</span>
+        <div class="session-dot open"></div>
+      </div>
+      <div class="session-right">
+        <span class="session-tag open">Value + 統合</span>
+        <div class="session-title">Valueを設計し、全体を完成させる</div>
+        <div class="session-goal">ステークホルダーへの約束を軸ごとに言語化し、MVV+Cを一枚に統合する。</div>
+        <ul class="session-items">
+          <li>Conceptから導出した軸数と内容を確認（2〜4軸）</li>
+          <li>各軸：短句 + ステートメントを作成</li>
+          <li>Mission / Vision / Concept / Value を並べて物語の一貫性を確認</li>
+          <li>DNAとの整合：誠実・創造・躍進・挑戦が全体に息づいているか</li>
+          <li>テンプレートへの流し込み・最終調整</li>
+        </ul>
+        <div class="session-divider">
+          <div class="session-must"><strong>Must：</strong>全要素の確定。社内向け・社外向けナラティブの設計方針まで確認できると理想。</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- footer -->
+  <div class="footer">
+    <div class="footer-note">BCC Holdings — MVV+C策定プロジェクト / 内部資料</div>
+    <div class="footer-count">残り 5 회議 / 約 5 時間</div>
+  </div>
+
+</div>
+
+
+</body></html>
