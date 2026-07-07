@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ＢＣＣ MVV+C ｜ 現在地と、うかがいたいこと</title>
+<style>
+  :root{
+    --navy:#01408D;--navy-2:#2a63a8;--navy-3:#16487f;
+    --ink:#0c1a2e;--sub:#54657d;--mut:#8a99ad;
+    --paper:#fff;--mist:#f3f7fc;--mist-2:#eaf1fa;
+    --line:#dce5f1;--line-2:#c7d6ea;
+    --ask:#0a5a8c;--ask-bg:#eef6fb;--ask-bd:#cfe4f1;
+    --maxw:1000px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;color:var(--ink);background:var(--paper);
+    font-family:"游ゴシック体","Yu Gothic",YuGothic,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+    font-weight:500;line-height:1.85;-webkit-font-smoothing:antialiased;letter-spacing:.01em;}
+  .bar{height:5px;background:linear-gradient(90deg,var(--navy),var(--navy-2));}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+
+  header{padding:60px 0 38px;border-bottom:1px solid var(--line);}
+  .brand{display:flex;align-items:center;gap:12px;margin-bottom:28px;}
+  .logo{font-weight:800;letter-spacing:.18em;color:var(--navy);font-size:20px;}
+  .brand .tag{font-size:12px;color:var(--sub);letter-spacing:.14em;}
+  .kicker{font-size:13px;letter-spacing:.22em;color:var(--navy);font-weight:700;margin-bottom:16px;}
+  h1{font-size:37px;line-height:1.36;margin:0 0 18px;font-weight:800;letter-spacing:.02em;}
+  h1 .thin{display:block;font-size:19px;font-weight:600;color:var(--sub);letter-spacing:.04em;margin-top:10px;}
+  .lead{font-size:15.5px;color:#33445c;max-width:800px;}
+  .lead b{color:var(--navy);font-weight:700;}
+  .posit{margin-top:22px;font-size:13.5px;color:#3a4b63;background:var(--mist);border-left:3px solid var(--navy);padding:12px 16px;border-radius:0 8px 8px 0;}
+  .posit b{color:var(--navy);}
+
+  section{padding:52px 0;border-bottom:1px solid var(--line);}
+  .eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:8px;}
+  .num{width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;
+    justify-content:center;font-size:13px;font-weight:800;flex:0 0 auto;}
+  .eyebrow .et{font-size:12.5px;letter-spacing:.18em;color:var(--navy);font-weight:700;}
+  h2{font-size:25px;margin:0 0 6px;font-weight:800;letter-spacing:.02em;}
+  .sectlead{font-size:14.5px;color:#3a4b63;margin:6px 0 24px;max-width:810px;}
+  .sectlead b{color:var(--navy);}
+
+  /* ask box */
+  .ask{margin-top:22px;border:1px solid var(--ask-bd);background:var(--ask-bg);border-radius:12px;padding:15px 18px;display:flex;gap:14px;align-items:flex-start;}
+  .ask .q{flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:var(--ask);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;}
+  .ask .t{font-size:13.5px;color:#234a63;line-height:1.7;}
+  .ask .t b{color:var(--ask);}
+
+  /* framework */
+  .fw{border:1px solid var(--line);border-radius:16px;overflow:hidden;}
+  .fw .ext{background:var(--navy);color:#fff;padding:16px 22px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;}
+  .fw .ext .lab{font-size:11px;letter-spacing:.14em;opacity:.85;font-weight:700;}
+  .fw .ext .tl{font-size:22px;font-weight:800;letter-spacing:.02em;}
+  .fw .body{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;}
+  .fw .cell{padding:20px 22px;border-right:1px solid var(--line);border-top:1px solid var(--line);}
+  .fw .cell:nth-child(3){border-right:0;}
+  .fw .cell .role{font-size:11px;letter-spacing:.1em;color:var(--navy);font-weight:800;}
+  .fw .cell .when{font-size:10.5px;color:var(--mut);margin-left:6px;letter-spacing:.04em;}
+  .fw .cell .st{font-size:18px;font-weight:800;margin-top:7px;line-height:1.5;}
+  .fw .cell .st small{display:block;font-size:12px;font-weight:600;color:var(--sub);margin-top:4px;}
+  .fw .cell.locked .st::after{content:"確定";margin-left:8px;font-size:10px;background:var(--navy);color:#fff;padding:1px 7px;border-radius:999px;vertical-align:2px;}
+  .fw .cell.today .role::after{content:"今ここをつくってます";margin-left:8px;font-size:9.5px;color:#fff;background:var(--navy-2);padding:1px 8px;border-radius:999px;letter-spacing:.02em;white-space:nowrap;}
+  .fw .cell.today .st{color:var(--navy-2);font-size:15px;font-weight:700;}
+  .fw .base{background:var(--mist);padding:14px 22px;border-top:1px solid var(--line);font-size:13px;color:#33455e;}
+  .fw .base b{color:var(--navy);}
+  .fwnote{margin-top:14px;font-size:12.5px;color:var(--sub);}
+  .fwnote b{color:var(--navy);}
+
+  /* option cards */
+  .axes{display:grid;grid-template-columns:1fr;gap:14px;}
+  .axis{border:1px solid var(--line);border-radius:13px;padding:20px 22px;background:#fff;transition:.18s;display:grid;grid-template-columns:150px 1fr;gap:20px;align-items:center;}
+  .axis:hover{border-color:var(--line-2);box-shadow:0 6px 22px rgba(1,64,141,.07);}
+  .axis .ax{font-size:12px;font-weight:800;letter-spacing:.03em;color:#fff;background:var(--navy);border-radius:8px;padding:8px 10px;text-align:center;line-height:1.4;}
+  .axis.alt .ax{background:var(--navy-3);}
+  .axis.alt2 .ax{background:var(--navy-2);}
+  .axis .ax small{display:block;font-weight:600;font-size:10px;opacity:.85;margin-top:2px;}
+  .axis .rt .copy{font-size:22px;font-weight:800;letter-spacing:.02em;line-height:1.45;}
+  .axis .rt .copy .sub2{font-size:16px;color:#33455e;font-weight:700;margin-left:8px;}
+  .axis .rt .desc{font-size:13px;color:#46586f;line-height:1.72;margin-top:6px;}
+  .axis .rt .judge{font-size:12px;color:var(--navy);margin-top:8px;}
+  .axis .rt .judge b{font-weight:700;}
+
+  /* value */
+  .vlead{border:1px solid var(--line);border-radius:12px;padding:16px 20px;background:var(--mist);margin-bottom:16px;font-size:13.5px;color:#33455e;line-height:1.8;}
+  .vlead b{color:var(--navy);}
+  .vals{display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px;}
+  .val{border:1px solid var(--line);border-radius:13px;padding:16px 18px;background:#fff;}
+  .val .src{font-size:10.5px;letter-spacing:.03em;color:var(--sub);font-weight:700;}
+  .val .name{font-size:19px;font-weight:800;color:var(--navy);letter-spacing:.02em;margin:6px 0 7px;line-height:1.4;}
+  .val .exp{font-size:12px;color:#3a4b63;line-height:1.68;}
+  .val .how{margin-top:7px;font-size:11.5px;color:#46586f;background:var(--mist);border-radius:7px;padding:6px 10px;}
+  .val .how b{color:var(--navy);}
+  .val .en{font-size:12.5px;color:var(--navy);letter-spacing:.05em;margin:-1px 0 9px;font-weight:700;}
+  .val.wide{grid-column:span 1;}
+  .valrow2{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:13px;}
+
+  /* matrix */
+  .matrix{border:1px solid var(--line);border-radius:13px;overflow:hidden;}
+  .mgrid{display:grid;grid-template-columns:104px 1fr 1fr 1fr;}
+  .mc{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 13px;}
+  .mc:nth-child(4n){border-right:0;}
+  .mhead{background:var(--navy);color:#fff;font-weight:800;font-size:12.5px;text-align:center;display:flex;flex-direction:column;justify-content:center;}
+  .mhead small{font-weight:600;opacity:.82;font-size:10.5px;display:block;margin-top:2px;}
+  .mrow{background:var(--mist);font-weight:800;font-size:12.5px;color:var(--navy);display:flex;flex-direction:column;justify-content:center;text-align:center;}
+  .mrow small{font-weight:600;color:var(--sub);font-size:10px;margin-top:2px;}
+  .mcell .ch{font-size:12.5px;font-weight:800;margin-bottom:3px;}
+  .mcell .cs{font-size:11px;color:var(--sub);line-height:1.5;}
+  .mcell .cv{font-size:11px;color:var(--navy);font-weight:700;margin-top:6px;border-top:1px dashed var(--line);padding-top:6px;}
+  .mcell .cv span{color:var(--sub);font-weight:500;}
+  .mcell .tagc{display:inline-block;font-size:10px;font-weight:800;color:#fff;background:var(--navy-2);border-radius:5px;padding:1px 7px;margin-bottom:6px;letter-spacing:.04em;}
+  .mread{border:1px solid var(--line);border-radius:12px;padding:15px 18px;background:var(--mist);margin-bottom:16px;font-size:13px;color:#33455e;line-height:1.8;}
+  .mread b{color:var(--navy);}
+  .mread .ex{display:inline-block;margin-top:6px;background:#fff;border:1px solid var(--line-2);border-radius:8px;padding:4px 12px;font-size:12.5px;}
+
+  /* story */
+  .story{border:1px solid var(--line-2);border-radius:14px;padding:26px 28px;background:linear-gradient(180deg,#f8fbff,#fff);margin-bottom:16px;}
+  .story .sh{font-size:12px;font-weight:800;letter-spacing:.05em;color:var(--navy);margin-bottom:14px;}
+  .story .sh .tone{font-size:10.5px;background:var(--navy);color:#fff;padding:2px 9px;border-radius:999px;margin-left:8px;letter-spacing:.04em;vertical-align:1px;}
+  .story p{margin:0;font-size:16px;line-height:2.15;color:#20334c;}
+  .story p .hl{color:var(--navy);font-weight:800;}
+  .story p .punch{display:block;margin-top:10px;font-size:21px;font-weight:800;color:var(--navy);letter-spacing:.02em;}
+  .tmpl{border:1px dashed var(--line-2);border-radius:12px;padding:18px 22px;background:var(--mist);}
+  .tmpl .tl{font-size:11px;letter-spacing:.12em;color:var(--navy);font-weight:800;margin-bottom:8px;}
+  .tmpl p{margin:0;font-size:14px;line-height:2;color:#33455e;}
+  .tmpl .sl{color:var(--navy);font-weight:800;background:#e7f0fc;border-radius:5px;padding:0 7px;}
+
+  /* schedule */
+  .qbig{border:1px solid var(--navy);border-radius:13px;padding:22px 24px;background:linear-gradient(180deg,#f6faff,#fff);margin-bottom:24px;}
+  .qbig .ql{font-size:11px;letter-spacing:.12em;color:var(--navy);font-weight:800;margin-bottom:8px;}
+  .qbig .qt{font-size:20px;font-weight:800;color:var(--ink);line-height:1.5;}
+  .sched{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+  .sched .st{flex:1;padding:11px 6px;text-align:center;border-right:1px solid var(--line);background:#fff;}
+  .sched .st:last-child{border-right:0;}
+  .sched .st.now{background:var(--navy);color:#fff;}
+  .sched .st .d{font-size:11px;opacity:.85;}
+  .sched .st .l{font-size:11.5px;font-weight:700;margin-top:3px;line-height:1.45;}
+
+  footer{padding:32px 0 58px;}
+  footer .ft{font-size:11.5px;color:var(--sub);line-height:1.9;}
+  footer .ft b{color:var(--navy);}
+
+  @media(max-width:760px){
+    .vals{grid-template-columns:1fr;}
+    .valrow2{grid-template-columns:1fr;}
+    .fw .body{grid-template-columns:1fr;}
+    .fw .cell{border-right:0;}
+    .axis{grid-template-columns:1fr;gap:12px;}
+    h1{font-size:27px;}
+    .mgrid{grid-template-columns:1fr;}
+    .mc{border-right:0;}
+    .mhead{flex-direction:row;gap:8px;}
+    .sched{flex-wrap:wrap;}.sched .st{flex:1 0 33%;border-bottom:1px solid var(--line);}
+  }
+  section,header>*{animation:rise .55s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+</style>
+</head>
+<body>
+<div class="bar"></div>
+
+<header>
+  <div class="wrap">
+    <div class="brand"><span class="logo">ＢＣＣ</span><span class="tag">MVV+C ｜ 現在地と、うかがいたいこと</span></div>
+    <div class="kicker">現在地と、うかがいたいこと</div>
+    <h1>MVV+C は、いまここにあります。
+      <span class="thin">Mission は確定。Vision・Concept・Value を、いま、みなさんと一緒につくっています。</span>
+    </h1>
+    <p class="lead">このボードは、<b>現在の状態を俯瞰</b>し、みなさんから<b>フィードバックをいただく</b>ためのものです。各項目に「いま、うかがいたいこと」を添えています。気軽に、率直なご意見をお寄せください。いただいた声は、このあと整理して、少しずつかたちにしていきます。</p>
+    <div class="posit"><b>位置づけ</b>：先にご説明した「MVV 説明資料」の続きです。あの資料の「Mission ほぼ確定／Vision・Concept・Value 検討中」を、<b>具体的な選択肢まで進めた状態</b>です。</div>
+  </div>
+</header>
+
+<!-- 01 全体像 -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">01</span><span class="et">全体像</span></div>
+    <h2>Mission から Value まで、一枚で</h2>
+    <p class="sectlead">説明資料と同じ骨格です。<b>Mission と土台（DNA）は確定</b>。この器の残り──Vision・Concept・Value──を、02 以降の候補をもとに、<b>いま、かたちにしている最中</b>です。</p>
+
+    <div class="fw">
+      <div class="ext"><span class="lab">TAGLINE ／ 外向き</span><span class="tl">ヒトが活きる Business Creativeを</span></div>
+      <div class="body">
+        <div class="cell locked"><div class="role">MISSION</div><span class="when">なぜ生まれたか</span><div class="st">歩みを、とめない。<small>一人ひとりの歩幅と変化に、向き合い続ける。</small></div></div>
+        <div class="cell today"><div class="role">VISION</div><span class="when">目指す風景</span><div class="st">歩みが連なる先の風景を、ひとつに。</div></div>
+        <div class="cell today"><div class="role">CONCEPT</div><span class="when">内向き・判断の軸</span><div class="st">実務のよりどころになる思想を、ひとつに。</div></div>
+      </div>
+      <div class="fw" style="border:0;border-radius:0;">
+        <div class="body" style="grid-template-columns:1fr 1fr;">
+          <div class="cell today"><div class="role">VALUE</div><span class="when">内向き・顧客／社会への約束</span><div class="st">DNA を翻訳した、受け取る価値を。</div></div>
+          <div class="cell"><div class="role">この器の使い方</div><div class="st" style="font-size:14px;font-weight:600;color:#33455e;">Vision と Concept を1つずつ選ぶと、Value と物語が定まります。</div></div>
+        </div>
+      </div>
+      <div class="base"><b>土台（DNA・確定）</b>：創造・誠実・躍進（＋触媒：挑戦）　─　ＢＣＣの変わらない核。すべての Value の源泉。</div>
+    </div>
+    <p class="fwnote"><b>読み方</b>：Concept と Value は「内向き（社内の判断軸・約束）」、Tagline と Mission・Vision は「外向き」。説明資料の整理に沿っています。</p>
+  </div>
+</section>
+
+<!-- 02 VISION -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">02</span><span class="et">VISION ／ 目指す風景</span></div>
+    <h2>3つの風景</h2>
+    <p class="sectlead">「歩みを、とめない」の先に広がる未来。主語は、変化が連なった先の<b>世の中の側</b>です。聴いて、同じ一枚の絵が浮かぶことを条件にしています。</p>
+
+    <div class="axes">
+      <div class="axis"><div class="ax">1 ／ 連なり</div>
+        <div class="rt"><div class="copy">誰かの一歩が、次の一歩になる。</div>
+          <div class="desc">一人の変化が止まらず、隣の人へ、また次の人へと連なって、世の中が動いていく風景。</div></div>
+      </div>
+      <div class="axis alt2"><div class="ax">2 ／ 変化<small>（学べる）</small></div>
+        <div class="rt"><div class="copy">誰もが、変わり続けられる世の中へ。</div>
+          <div class="desc">学ぶことで、昨日できなかったことができるようになる。その変化が、当たり前になっている風景。</div></div>
+      </div>
+      <div class="axis alt"><div class="ax">3 ／ 事業創出</div>
+        <div class="rt"><div class="copy">まだ無い仕事が、人から生まれ続ける世界へ。</div>
+          <div class="desc">人がいる場所から、これまでなかった仕事や事業が次々と芽吹いていく風景。「事業が人をつくり、人が事業をつくる」と直結します。</div></div>
+      </div>
+    </div>
+
+    <div class="ask"><div class="q">?</div><div class="t"><b>うかがいたいこと</b>：この3つのうち、ＢＣＣが本当に目指したい未来はどれでしょうか。声に出して聴いたとき、みなさんに<b>同じ絵が浮かぶ</b>のはどれか、率直な感覚を教えてください。</div></div>
+  </div>
+</section>
+
+<!-- 03 CONCEPT -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">03</span><span class="et">CONCEPT ／ 実務の判断軸</span></div>
+    <h2>3つの思想</h2>
+    <p class="sectlead">Vision に向かうために、働く一人ひとりが<b>いま、何をよりどころに動くか</b>。意味は一つ──正しく働くことが、いちばんの武器になる（人が事業をつくる）。それを3つの角度から言い表しています。</p>
+
+    <div class="axes">
+      <div class="axis"><div class="ax">1 ／ 当たり前・凡事</div>
+        <div class="rt"><div class="copy">当たり前を、武器に。<span class="sub2">凡事を、最強に。</span></div>
+          <div class="desc">特別なことではなく、当たり前を誰よりも徹底することが、いちばんの強さになる。</div>
+          <div class="judge"><b>判断基準</b>：当たり前を、誰よりやれているか。</div></div>
+      </div>
+      <div class="axis alt"><div class="ax">2 ／ 道理・筋</div>
+        <div class="rt"><div class="copy">道理を、武器に。<span class="sub2">筋を通すほど、強くなる。</span></div>
+          <div class="desc">近道や小手先ではなく、筋を通して正しく働くことが、結局いちばん強い。</div>
+          <div class="judge"><b>判断基準</b>：いちばん筋の通る道を選んでいるか。</div></div>
+      </div>
+      <div class="axis alt2"><div class="ax">3 ／ 人で勝つ</div>
+        <div class="rt"><div class="copy">人で、勝つ。<span class="sub2">価格より、人。</span></div>
+          <div class="desc">価格や規模ではなく、一人ひとりの人の力で価値を生み、選ばれる。</div>
+          <div class="judge"><b>判断基準</b>：今の仕事、人で価値を出せているか。</div></div>
+      </div>
+    </div>
+
+    <div class="ask"><div class="q">?</div><div class="t"><b>うかがいたいこと</b>：日々の実務で、迷ったときに<b>本当に立ち返れる一語</b>はどれでしょうか。まず判断基準で選び、そこからことばを選びたいと考えています。</div></div>
+  </div>
+</section>
+
+<!-- 04 VALUE -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">04</span><span class="et">VALUE ／ 受け取る価値</span></div>
+    <h2>DNA を翻訳した、5つの約束</h2>
+    <p class="sectlead">Value は、<b>ＢＣＣの DNA（創造・誠実・躍進）</b>を、受け取る相手のことばに翻訳したものです。まず<b>ステークホルダーへの3つ</b>。それを<b>社会へ・社内へ</b>と翻訳した2つ。あわせて5つです。<b>5つは、どれかを選ぶのではなく、すべてをセットで届けます</b>。各案に「どうやって」と、外向けの英語ワンフレーズを添えています。</p>
+
+    <div class="vlead">DNA の3語（創造・誠実・躍進）を、相手が受け取る価値に言い換えたのが、上段の<b>ステークホルダーへの約束</b>。それを、外（社会）と内（社内）へ翻訳したのが下段です。この<b>内外への翻訳</b>そのものが、ＢＣＣらしさの一部になります。</div>
+
+    <div class="vals">
+      <div class="val"><div class="src">ステークホルダーへ ／ 創造</div><div class="name">期待の、その先へ。</div><div class="en">Inspire Creativity</div><div class="exp">任せた相手が、こちらの想像を超えて応えてくれる。</div><div class="how"><b>どうやって：</b>売る人そのものを磨くから。</div></div>
+      <div class="val"><div class="src">ステークホルダーへ ／ 誠実</div><div class="name">何度でも、頼れる。</div><div class="en">Embody Integrity</div><div class="exp">一度きりで終わらず、また頼みたくなる確かさがある。</div><div class="how"><b>どうやって：</b>正しく働くことが、そのまま信頼になるから。</div></div>
+      <div class="val"><div class="src">ステークホルダーへ ／ 躍進</div><div class="name">ともに、伸びる。</div><div class="en">Cultivate Legacy</div><div class="exp">頼んだ仕事の先で事業が伸び、その価値が次へと受け継がれていく。</div><div class="how"><b>どうやって：</b>人を起点に、もの・かねの価値を高め、次へ受け継ぐから。</div></div>
+    </div>
+    <div class="valrow2">
+      <div class="val"><div class="src">社会へ ／ 翻訳</div><div class="name">確かさを、ひろげる。</div><div class="en">Rewarding Society</div><div class="exp">正しく働く人が一人ずつ増え、世の中の仕事が確かになっていく。</div><div class="how"><b>どうやって：</b>真っ当な仕事を、一つずつ増やすことで。</div></div>
+      <div class="val"><div class="src">社内へ ／ 翻訳</div><div class="name">働くほど、強くなる。</div><div class="en">Keep Growing</div><div class="exp">一つの仕事が、次に使える自分の力になっていく。</div><div class="how"><b>どうやって：</b>事業が、人をつくるから。</div></div>
+    </div>
+
+    <div class="ask"><div class="q">?</div><div class="t"><b>うかがいたいこと</b>：これらの約束は、みなさんの実務の手応えと<b>一致している</b>でしょうか。とくに、社会へ・社内へ翻訳した2つが、実感に合っているかを教えてください。</div></div>
+  </div>
+</section>
+
+<!-- 05 組み合わせ -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">05</span><span class="et">組み合わせ</span></div>
+    <h2>Vision × Concept ＝ 9通り。響く Value まで</h2>
+    <p class="sectlead">「02 の Vision（3案）」と「03 の Concept（3案）」を掛け合わせた<b>全9通り</b>です。各マスは、その組み合わせが生む<b>会社の性格</b>と、そのとき<b>いちばん響く Value</b>を示しています。</p>
+
+    <div class="mread">
+      <b>見方</b>：縦が Vision（02 の 1〜3）、横が Concept（03 の 1〜3）。交わるマスが、その組み合わせの人物像です。<br>
+      <span class="ex">例：<b>Vision 3</b>〔まだ無い仕事が…〕 × <b>Concept 3</b>〔人で、勝つ〕 ＝ <b>人材創発型</b></span><br>
+      <span style="font-size:12px;color:var(--sub);">※「響くValue」は選ぶものではありません。5つは常にセットで届けたうえで、その組み合わせで<b style="color:var(--navy);">最初に立つ一つ</b>を示しています。</span>
+    </div>
+
+    <div class="matrix">
+      <div class="mgrid">
+        <div class="mc mhead" style="background:var(--navy-3);">Vision（縦）<br>× Concept（横）</div>
+        <div class="mc mhead">Concept 1<br>当たり前<small>当たり前を、武器に</small></div>
+        <div class="mc mhead">Concept 2<br>道理<small>道理を、武器に</small></div>
+        <div class="mc mhead">Concept 3<br>人で勝つ<small>人で、勝つ</small></div>
+
+        <div class="mc mrow">Vision 1<br>連なり<small>次の一歩になる</small></div>
+        <div class="mc mcell"><span class="tagc">V1 × C1</span><div class="ch">堅実・信頼型</div><div class="cs">地道な一歩が積み重なって連なる。</div><div class="cv">響くValue <span>／</span> 何度でも、頼れる。</div></div>
+        <div class="mc mcell"><span class="tagc">V1 × C2</span><div class="ch">王道・誠実型</div><div class="cs">筋を通した一歩が、次を呼ぶ。</div><div class="cv">響くValue <span>／</span> 何度でも、頼れる。</div></div>
+        <div class="mc mcell"><span class="tagc">V1 × C3</span><div class="ch">人間力連鎖型</div><div class="cs">人の力で連鎖を起こす。</div><div class="cv">響くValue <span>／</span> ともに、伸びる。</div></div>
+
+        <div class="mc mrow">Vision 2<br>変化<small>変わり続ける</small></div>
+        <div class="mc mcell"><span class="tagc">V2 × C1</span><div class="ch">凡事徹底の成長型</div><div class="cs">当たり前を続けて、変わり続ける。</div><div class="cv">響くValue <span>／</span> 働くほど、強くなる。</div></div>
+        <div class="mc mcell"><span class="tagc">V2 × C2</span><div class="ch">実直な変革型</div><div class="cs">正しく学び、正しく変わる。</div><div class="cv">響くValue <span>／</span> 確かさを、ひろげる。</div></div>
+        <div class="mc mcell"><span class="tagc">V2 × C3</span><div class="ch">育成×競争力型</div><div class="cs">学びで人の価値を上げて勝つ。</div><div class="cv">響くValue <span>／</span> 働くほど、強くなる。</div></div>
+
+        <div class="mc mrow">Vision 3<br>事業創出<small>仕事が生まれる</small></div>
+        <div class="mc mcell"><span class="tagc">V3 × C1</span><div class="ch">堅実イノベ型</div><div class="cs">当たり前の徹底から新事業が生まれる。</div><div class="cv">響くValue <span>／</span> 期待の、その先へ。</div></div>
+        <div class="mc mcell"><span class="tagc">V3 × C2</span><div class="ch">正道の躍進型</div><div class="cs">筋の通った挑戦で、事業を生む。</div><div class="cv">響くValue <span>／</span> ともに、伸びる。</div></div>
+        <div class="mc mcell"><span class="tagc">V3 × C3</span><div class="ch">人材創発型</div><div class="cs">人を起点に、新しい事業を生む。</div><div class="cv">響くValue <span>／</span> ともに、伸びる。</div></div>
+      </div>
+    </div>
+
+    <div class="ask"><div class="q">?</div><div class="t"><b>うかがいたいこと</b>：この9通りのうち、<b>ＢＣＣらしい"性格"</b>はどれでしょうか。「これはＢＣＣではない」という消去法のご意見も歓迎です。</div></div>
+  </div>
+</section>
+
+<!-- 06 STORY -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">06</span><span class="et">MVV+C ストーリー</span></div>
+    <h2>選んだ軸を、ひとつの物語にする</h2>
+    <p class="sectlead">Mission から Value までを、外へ届く<b>一つの物語</b>に。下は組み合わせ別の書き上がり例です。あえて<b>Concept を最後に置き</b>、広告のように語っています。</p>
+
+    <div class="story">
+      <div class="sh">例 ／ 事業創出 × 人で勝つ<span class="tone">躍進トーン</span></div>
+      <p>歩幅は、人それぞれ違います。速い人がいて、ゆっくりな人がいて、いままさに立ち止まりそうな人がいる。<br>
+      ＢＣＣは、その一人ひとりの<span class="hl">歩みを、とめない</span>ために生まれました。<br>
+      私たちが見ている未来は、人がいる場所から<span class="hl">まだ無い仕事が、次々と生まれていく世界</span>。誰かの一歩が、そのまま新しい事業になっていく世界です。<br>
+      そこで生まれる約束は、お客様への「期待の、その先」、社会への「確かさを、ひろげる」、そして働く仲間への「働くほど、強くなる」。<br>
+      価格でもなく、規模でもなく。<br>
+      <span class="punch">人で、勝つ。それが、ＢＣＣです。</span></p>
+    </div>
+
+    <div class="story">
+      <div class="sh">例 ／ 連なり × 道理<span class="tone" style="background:var(--navy-3);">誠実トーン</span></div>
+      <p>誰かの小さな一歩が、次の誰かの一歩になる。その連なりが、世の中を静かに前へ動かしていく。<br>
+      ＢＣＣは、その<span class="hl">歩みを、とめない</span>ために生まれました。<br>
+      私たちが目指すのは、<span class="hl">一歩が連なって、まだ見ぬところまで届いていく世界</span>。そこで生まれる約束は、お客様への「何度でも、頼れる」、社会への「確かさを、ひろげる」、そして仲間への「働くほど、強くなる」。<br>
+      派手さより、確かさ。近道より、筋。<br>
+      <span class="punch">道理を、武器に。それが、ＢＣＣの勝ち方です。</span></p>
+    </div>
+
+    <div class="tmpl">
+      <div class="tl">物語のひな型（どの組み合わせでも使えます）</div>
+      <p>ＢＣＣは、<span class="sl">Mission</span> のために生まれました。<br>
+      だから、<span class="sl">Vision</span> という未来を目指します。<br>
+      だから今、私たちは <span class="sl">Concept</span> を掲げ、<br>
+      <span class="sl">Value（顧客／社会／社内への約束）</span> を約束します。</p>
+    </div>
+
+    <div class="ask"><div class="q">?</div><div class="t"><b>うかがいたいこと</b>：物語として社外に届いたとき、<b>心が動く</b>のはどちらのトーンでしょうか。ＢＣＣが外に見せたい表情に近いのはどれか、感覚で結構です。</div></div>
+  </div>
+</section>
+
+<!-- 07 問い + スケジュール -->
+<section style="border-bottom:0;">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">07</span><span class="et">全体への問いと、これから</span></div>
+    <h2>最後に、ひとつだけ</h2>
+
+    <div class="qbig">
+      <div class="ql">全体をとおして、うかがいたいこと</div>
+      <div class="qt">それぞれの実務において、ここで掲げている道理は、整合していますか。</div>
+    </div>
+
+    <div class="sched">
+      <div class="st now"><div class="d">〜7/7</div><div class="l">本資料<br>（現在地）</div></div>
+      <div class="st"><div class="d">〜7/24</div><div class="l">幹部4名＋役員FB</div></div>
+      <div class="st"><div class="d">〜8/10</div><div class="l">修正→役員FB</div></div>
+      <div class="st"><div class="d">〜8/17</div><div class="l">カンパニー長・実務者FB</div></div>
+      <div class="st"><div class="d">8末</div><div class="l">完成（予算・組織）</div></div>
+      <div class="st"><div class="d">9/14</div><div class="l">取締役会</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="ft">
+      <b>ＢＣＣ MVV+C</b>　／　Mission：歩みを、とめない。（確定）　／　Tagline：ヒトが活きる Business Creativeを　／　土台：創造・誠実・躍進<br>
+      トンマナ：e-bcc 準拠（#01408D・游ゴシック・白基調）　／　Vision・Concept・Value は、本資料の候補から絞り込み、9/14 取締役会で確定します。
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
