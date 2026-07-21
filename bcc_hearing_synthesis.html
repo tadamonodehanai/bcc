@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ＢＣＣ MVV+C ｜ 幹部ヒアリング 統合レポート</title>
+<style>
+  :root{
+    --navy:#01408D;--navy-2:#2a63a8;--navy-3:#16487f;
+    --ink:#0c1a2e;--sub:#54657d;--mut:#8a99ad;
+    --paper:#fff;--mist:#f3f7fc;--mist-2:#eaf1fa;
+    --line:#dce5f1;--line-2:#c7d6ea;
+    --gold:#b98a1f;--gold-bg:#fbf3df;--gold-bd:#f0dca6;
+    --maxw:1000px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;color:var(--ink);background:var(--paper);
+    font-family:"游ゴシック体","Yu Gothic",YuGothic,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+    font-weight:500;line-height:1.85;-webkit-font-smoothing:antialiased;letter-spacing:.01em;}
+  .bar{height:5px;background:linear-gradient(90deg,var(--navy),var(--navy-2));}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+
+  header{padding:58px 0 36px;border-bottom:1px solid var(--line);}
+  .brand{display:flex;align-items:center;gap:12px;margin-bottom:26px;}
+  .logo{font-weight:800;letter-spacing:.18em;color:var(--navy);font-size:20px;}
+  .brand .tag{font-size:12px;color:var(--sub);letter-spacing:.14em;}
+  .kicker{font-size:13px;letter-spacing:.22em;color:var(--navy);font-weight:700;margin-bottom:16px;}
+  h1{font-size:36px;line-height:1.36;margin:0 0 18px;font-weight:800;letter-spacing:.02em;}
+  h1 .thin{display:block;font-size:19px;font-weight:600;color:var(--sub);letter-spacing:.04em;margin-top:10px;}
+  .lead{font-size:15.5px;color:#33445c;max-width:800px;}
+  .lead b{color:var(--navy);font-weight:700;}
+  .roster{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:26px;}
+  .rc{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--mist);}
+  .rc .n{font-size:14px;font-weight:800;}
+  .rc .r{font-size:11px;color:var(--sub);margin-top:2px;line-height:1.5;}
+  .rc .d{font-size:10.5px;color:var(--mut);margin-top:5px;}
+
+  section{padding:52px 0;border-bottom:1px solid var(--line);}
+  .eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:8px;}
+  .num{width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;
+    justify-content:center;font-size:13px;font-weight:800;flex:0 0 auto;}
+  .eyebrow .et{font-size:12.5px;letter-spacing:.18em;color:var(--navy);font-weight:700;}
+  h2{font-size:25px;margin:0 0 6px;font-weight:800;letter-spacing:.02em;}
+  .sectlead{font-size:14.5px;color:#3a4b63;margin:6px 0 24px;max-width:810px;}
+  .sectlead b{color:var(--navy);}
+
+  /* agreement */
+  .agree{border:1px solid var(--navy);border-radius:14px;overflow:hidden;margin-bottom:18px;}
+  .agree .ah{background:var(--navy);color:#fff;padding:13px 20px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;}
+  .agree .ah .t{font-size:18px;font-weight:800;}
+  .agree .ah .c{font-size:11px;background:rgba(255,255,255,.2);padding:2px 10px;border-radius:999px;letter-spacing:.05em;}
+  .agree .ab{padding:16px 20px;}
+  .voices{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+  .voice{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#fff;}
+  .voice .who{font-size:11px;font-weight:800;color:var(--navy);margin-bottom:5px;}
+  .voice .q{font-size:12.5px;color:#3a4b63;line-height:1.7;}
+
+  .note{margin-top:16px;font-size:13px;color:var(--sub);background:var(--mist);border-left:3px solid var(--navy);padding:12px 16px;border-radius:0 8px 8px 0;}
+  .note b{color:var(--navy);}
+  .gnote{margin-top:16px;font-size:13.5px;color:#6f531a;background:var(--gold-bg);border-left:3px solid var(--gold);padding:13px 17px;border-radius:0 8px 8px 0;}
+  .gnote b{color:var(--gold);}
+
+  /* split table */
+  .split{border:1px solid var(--line);border-radius:13px;overflow:hidden;margin-bottom:16px;}
+  .sgrid{display:grid;grid-template-columns:120px repeat(4,1fr);}
+  .sc{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:11px 12px;font-size:12.5px;}
+  .sc:nth-child(5n){border-right:0;}
+  .shead{background:var(--navy);color:#fff;font-weight:800;font-size:12px;text-align:center;}
+  .srow{background:var(--mist);font-weight:800;color:var(--navy);font-size:12px;display:flex;align-items:center;}
+  .sc .pick{font-weight:800;color:var(--navy);display:block;font-size:13px;}
+  .sc .rsn{color:var(--sub);font-size:11.5px;line-height:1.6;margin-top:3px;display:block;}
+  .sc.warm{background:#f7fbff;}
+
+  /* portraits */
+  .ports{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .port{border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+  .port .ph{background:var(--mist);padding:13px 18px;border-bottom:1px solid var(--line);}
+  .port .ph .n{font-size:17px;font-weight:800;}
+  .port .ph .r{font-size:11.5px;color:var(--sub);margin-top:2px;}
+  .port .pb{padding:14px 18px;}
+  .row{display:grid;grid-template-columns:78px 1fr;gap:10px;font-size:12.5px;margin-bottom:7px;line-height:1.7;}
+  .row .k{color:var(--navy);font-weight:700;}
+  .row .v{color:#3a4b63;}
+  .port .quote{margin-top:10px;padding:11px 14px;background:#f7fbff;border-left:3px solid var(--navy-2);border-radius:0 8px 8px 0;font-size:13px;color:#20334c;line-height:1.75;}
+
+  /* words */
+  .words{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .word{border:1px solid var(--line);border-radius:12px;padding:16px 19px;background:#fff;}
+  .word.hot{border-color:var(--gold);background:linear-gradient(180deg,#fffdf6,#fff);}
+  .word .w{font-size:19px;font-weight:800;color:var(--navy);letter-spacing:.02em;}
+  .word.hot .w{color:var(--gold);}
+  .word .src{font-size:11px;color:var(--sub);margin-top:3px;}
+  .word .m{font-size:12.5px;color:#3a4b63;line-height:1.72;margin-top:8px;}
+  .word .use{margin-top:8px;font-size:12px;color:#46586f;background:var(--mist);border-radius:7px;padding:7px 11px;}
+  .word .use b{color:var(--navy);}
+
+  /* discovery */
+  .disc{border:1px solid var(--gold);border-radius:16px;overflow:hidden;background:linear-gradient(180deg,#fffdf6,#fff);}
+  .disc .dh{background:var(--gold);color:#fff;padding:14px 22px;font-size:16px;font-weight:800;letter-spacing:.03em;}
+  .disc .db{padding:20px 22px;}
+  .disc .db p{margin:0 0 12px;font-size:14.5px;color:#2c3e57;line-height:1.9;}
+  .disc .db p:last-child{margin-bottom:0;}
+  .disc .db b{color:var(--gold);}
+  .ladder{display:grid;grid-template-columns:1fr 40px 1fr;align-items:center;gap:0;margin:18px 0;border:1px solid var(--gold-bd);border-radius:12px;overflow:hidden;background:#fff;}
+  .ladder .l{padding:14px 18px;}
+  .ladder .a{display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:20px;background:var(--gold-bg);align-self:stretch;}
+  .ladder .lt{font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--sub);}
+  .ladder .lv{font-size:15px;font-weight:800;margin-top:4px;line-height:1.5;}
+  .ladder .ls{font-size:11.5px;color:var(--sub);margin-top:4px;line-height:1.6;}
+
+  /* implications */
+  .imps{display:grid;grid-template-columns:1fr;gap:14px;}
+  .imp{border:1px solid var(--line);border-radius:13px;padding:18px 20px;background:#fff;display:grid;grid-template-columns:118px 1fr;gap:18px;}
+  .imp .il{font-size:12px;font-weight:800;color:#fff;background:var(--navy);border-radius:8px;padding:9px 8px;text-align:center;align-self:start;line-height:1.4;}
+  .imp.c2 .il{background:var(--navy-3);}
+  .imp.c3 .il{background:var(--navy-2);}
+  .imp .ir .t{font-size:16px;font-weight:800;margin-bottom:6px;line-height:1.5;}
+  .imp .ir .d{font-size:13px;color:#46586f;line-height:1.75;}
+  .imp .ir .d b{color:var(--navy);}
+  .imp .ir .ev{margin-top:9px;font-size:12px;color:var(--sub);background:var(--mist);border-radius:7px;padding:7px 11px;}
+  .imp .ir .ev b{color:var(--navy);}
+
+  footer{padding:32px 0 58px;}
+  footer .ft{font-size:11.5px;color:var(--sub);line-height:1.9;}
+  footer .ft b{color:var(--navy);}
+
+  @media(max-width:760px){
+    .roster,.voices,.ports,.words{grid-template-columns:1fr;}
+    .sgrid{grid-template-columns:1fr;}
+    .sc{border-right:0;}
+    .ladder{grid-template-columns:1fr;}
+    .ladder .a{transform:rotate(90deg);height:26px;}
+    .imp{grid-template-columns:1fr;gap:10px;}
+    h1{font-size:27px;}
+  }
+  section,header>*{animation:rise .55s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+</style>
+</head>
+<body>
+<div class="bar"></div>
+
+<header>
+  <div class="wrap">
+    <div class="brand"><span class="logo">ＢＣＣ</span><span class="tag">MVV+C ｜ 幹部ヒアリング 統合レポート</span></div>
+    <div class="kicker">四つの視差から、見えたもの</div>
+    <h1>同じ言葉に、四つの別々の根拠が刺さりました。
+      <span class="thin">幹部4名・個別ヒアリングのメタ分析（2026年7月15日〜17日）</span>
+    </h1>
+    <p class="lead">4名それぞれの立場から、Vision・Concept・Value に率直なご意見をいただきました。このレポートは、その<b>一致点・分岐点・拾えた言葉</b>を整理し、次のドラフトへの示唆をまとめたものです。結論として、<b>言葉を選び直す材料ではなく、言葉を置く「高さ」を決める材料</b>が得られました。</p>
+
+    <div class="roster">
+      <div class="rc"><div class="n">針谷 啓史さん</div><div class="r">IT営業アウトソーシング<br>定着・品質（守りの領域）</div><div class="d">7/15 ／ 45分</div></div>
+      <div class="rc"><div class="n">江川 倫弘さん</div><div class="r">IT営業アウトソーシング<br>ネットワーク・セキュリティ</div><div class="d">7/16 ／ 40分</div></div>
+      <div class="rc"><div class="n">松本 一剛さん</div><div class="r">IT営業アウトソーシング<br>教育グループ責任者</div><div class="d">7/16 ／ 37分</div></div>
+      <div class="rc"><div class="n">柏木 一希さん</div><div class="r">管理本部<br>唯一の非営業ポジション</div><div class="d">7/17 ／ 38分</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">01</span><span class="et">一致したこと</span></div>
+    <h2>四人が、同じ二つを選びました</h2>
+    <p class="sectlead">合意は「多数決で同じ札が集まった」のとは違います。<b>四人が、それぞれ別の理由で、同じ言葉にたどり着いています</b>。同じ根拠で選ばれた言葉より、はるかに強い状態です。</p>
+
+    <div class="agree">
+      <div class="ah"><span class="t">Vision ／ 案2「誰もが、変わり続けられる世の中へ」</span><span class="c">4名全員が第一選択</span></div>
+      <div class="ab">
+        <div class="voices">
+          <div class="voice"><div class="who">針谷さん</div><div class="q">スタート地点が手前の方が多い。自分のステージが変わる、できることが広がる、という変化は直感的に来る。</div></div>
+          <div class="voice"><div class="who">江川さん</div><div class="q">最初は学べるに寄りすぎかと感じたものの、考えるほどＢＣＣらしいと思えて、違和感がなくなった。</div></div>
+          <div class="voice"><div class="who">松本さん</div><div class="q">変化が多い時代背景の中で、一つずつ検討した結果しっくりきた。全社員が理解し浸透することを重視。</div></div>
+          <div class="voice"><div class="who">柏木さん</div><div class="q">未経験の方をIT教育して送り出す、レクリエーション介護士、作新。変わりたい方を支え、支援できる会社。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="agree">
+      <div class="ah"><span class="t">DNA ／「誠実」が唯一の共通項</span><span class="c">立場を越えて一致</span></div>
+      <div class="ab">
+        <div class="voices">
+          <div class="voice"><div class="who">針谷さん</div><div class="q">まっとうなところで、地に足をつけて働ける。その安心感・信頼性が、社内へのメッセージとして響く。</div></div>
+          <div class="voice"><div class="who">江川さん</div><div class="q">20年、ＢＣＣのやり方が染み込んでいる。それを使わないと落ち着かないほどに。</div></div>
+          <div class="voice"><div class="who">松本さん</div><div class="q">迷った時の本筋は、誠実であるか。人に対して、自分に対して、お客様に対して。</div></div>
+          <div class="voice"><div class="who">柏木さん</div><div class="q">迷った時に「これで動けば誠実か」と立ち返る、一つのよりどころ。</div></div>
+        </div>
+        <div class="note"><b>柏木さんによる構造化</b>：根が誠実（岡林副社長）、幹が創造（伊藤社長）、葉と花が躍進（安原専務）、そして土が藤さん。<b>「誠実があっての躍進」</b>——誠実に裏付けされていない躍進は、足元が定まらない数字になる、という整理をいただきました。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">02</span><span class="et">分かれたこと</span></div>
+    <h2>立場が、そのまま距離になりました</h2>
+    <p class="sectlead">分岐は対立ではなく、<b>視差</b>です。どこに立っているかで、同じ言葉との距離が変わりました。この視差そのものが、今回いちばんの収穫です。</p>
+
+    <div class="split">
+      <div class="sgrid">
+        <div class="sc shead">論点</div>
+        <div class="sc shead">針谷さん</div>
+        <div class="sc shead">江川さん</div>
+        <div class="sc shead">松本さん</div>
+        <div class="sc shead">柏木さん</div>
+
+        <div class="sc srow">Concept</div>
+        <div class="sc warm"><span class="pick">当たり前</span><span class="rsn">道理も可。人で勝つは「人」が多義的で基準になりにくい。</span></div>
+        <div class="sc warm"><span class="pick">当たり前</span><span class="rsn">立ち返れる一言。道理は硬く、入りにくい。</span></div>
+        <div class="sc"><span class="pick">人で勝つ</span><span class="rsn">人のビジネスだから。当たり前は人により基準が違う。</span></div>
+        <div class="sc warm"><span class="pick">当たり前</span><span class="rsn">瞬殺で。ここができて土台になる。管理は特に。</span></div>
+
+        <div class="sc srow">事業創出<br>（Vision案3）</div>
+        <div class="sc"><span class="pick">距離あり</span><span class="rsn">予算やKPI、3年ビジョンに落とし込みにくい。</span></div>
+        <div class="sc warm"><span class="pick">近い</span><span class="rsn">上場後に新サービスを立ち上げた自身の体験そのもの。</span></div>
+        <div class="sc"><span class="pick">距離あり</span><span class="rsn">全社員が理解できるか、イメージがつきにくい。</span></div>
+        <div class="sc warm"><span class="pick">近い</span><span class="rsn">創造は会社の根本。誰もやったことのないことを、載せた方がよい。</span></div>
+
+        <div class="sc srow">物語のトーン</div>
+        <div class="sc"><span class="pick">誠実トーン</span><span class="rsn">自身のイメージに近い。</span></div>
+        <div class="sc"><span class="pick">—</span><span class="rsn">前向きな型を支持。</span></div>
+        <div class="sc warm"><span class="pick">躍進トーン</span><span class="rsn">未来をつくる考え方がしっくりくる。</span></div>
+        <div class="sc warm"><span class="pick">躍進トーン</span><span class="rsn">会社として見せるなら、明るい方を。</span></div>
+      </div>
+    </div>
+
+    <div class="note"><b>Concept について</b>：「道理」は、針谷さん・江川さん・松本さんの三名から<b>硬い・意味がつかみにくい</b>との声をいただきました。一方で「当たり前」は三名が支持。松本さんの<b>「当たり前の基準は、人によって違う」</b>という指摘は、この言葉を使う際に必ず答えるべき問いです。</div>
+
+    <div class="gnote"><b>ここが分岐の本質です</b>：事業創出への距離は、<b>実務がどれだけ事業づくりに接しているか</b>で決まっています。定着や教育に立つと遠く、事業開発や経営管理に立つと近い。つまり<b>実務との整合でVisionを選ぶと、部署の数だけVisionが割れます</b>。</div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">03</span><span class="et">四つの肖像</span></div>
+    <h2>それぞれの立場から見えた風景</h2>
+
+    <div class="ports">
+      <div class="port">
+        <div class="ph"><div class="n">針谷 啓史さん</div><div class="r">定着・品質 ／ 多くのメンバーと接する立場</div></div>
+        <div class="pb">
+          <div class="row"><span class="k">Vision</span><span class="v">案2（変化）。案3は自分ごとにしにくい。</span></div>
+          <div class="row"><span class="k">Concept</span><span class="v">当たり前 ＞ 道理 ＞ 人で勝つ。</span></div>
+          <div class="row"><span class="k">響いたValue</span><span class="v">確かさ。まっとう・安心感・信頼性・地に足。</span></div>
+          <div class="row"><span class="k">道理</span><span class="v">納得感、腹落ち。</span></div>
+          <div class="quote">満足はしなくてよい。納得して腹落ちして、今この瞬間に輝いてほしい。ずっとＢＣＣで、とは思っていない。<br><span style="color:var(--sub);font-size:12px;">──「今の腹落ちは、来年の腹落ちではない」という点に、強く共感をいただきました。</span></div>
+        </div>
+      </div>
+
+      <div class="port">
+        <div class="ph"><div class="n">江川 倫弘さん</div><div class="r">ネットワーク・セキュリティ ／ 在籍20年</div></div>
+        <div class="pb">
+          <div class="row"><span class="k">Vision</span><span class="v">案2。案3も自身の体験として近い。</span></div>
+          <div class="row"><span class="k">Concept</span><span class="v">当たり前が一番。人で勝つも像が浮かぶ。</span></div>
+          <div class="row"><span class="k">響いたValue</span><span class="v">何度でも、頼れる（顕著）。期待の、その先へ。</span></div>
+          <div class="row"><span class="k">実感</span><span class="v">単価が低いわけではなく、ＢＣＣだから選ばれる。</span></div>
+          <div class="quote">既存のお客様は、ネットワークに関することなら何でも頼ってくださる。ＢＣＣに頼ればなんとかしてくれる、という受け取られ方をしている。ベテランになると、お客様の3年先の計画まで考える。</div>
+        </div>
+      </div>
+
+      <div class="port">
+        <div class="ph"><div class="n">松本 一剛さん</div><div class="r">教育グループ責任者 ／ 毎月4〜6名を一から</div></div>
+        <div class="pb">
+          <div class="row"><span class="k">Vision</span><span class="v">案2。「可能性を広げられる未来へ」の方向を提案。</span></div>
+          <div class="row"><span class="k">Concept</span><span class="v">人で勝つ。ただし自身の本筋は誠実。</span></div>
+          <div class="row"><span class="k">Value</span><span class="v">「働くほど、強くなる」は解釈が定まりにくい。説明文の方が近い。</span></div>
+          <div class="row"><span class="k">テーマ</span><span class="v">勇気を持って、チャレンジする。</span></div>
+          <div class="quote">見積もりを作る業務だけを見ると、ただの作業になって、面白くなくなって辞めることにつながる。この仕事が何につながっているのか、そのイメージができることが大事。<br><span style="color:var(--sub);font-size:12px;">──「今の仕事が、未来をつくっていく」というニュアンスが伝われば、とのご提案をいただきました。</span></div>
+        </div>
+      </div>
+
+      <div class="port">
+        <div class="ph"><div class="n">柏木 一希さん</div><div class="r">管理本部 ／ 在籍10年・IR実務</div></div>
+        <div class="pb">
+          <div class="row"><span class="k">Vision</span><span class="v">案2。三案ともしっくりくる。</span></div>
+          <div class="row"><span class="k">Concept</span><span class="v">当たり前（瞬殺で）。</span></div>
+          <div class="row"><span class="k">響いたValue</span><span class="v">確かさを、ひろげる。社会と社内は一体。</span></div>
+          <div class="row"><span class="k">道理</span><span class="v">誠実。「これで動けば誠実か」。</span></div>
+          <div class="quote">法人も、法の人格を与えられた人。結局、法人は人の集まりでしかない。<br><span style="color:var(--sub);font-size:12px;">──投資家が目にする資料を正確につくることで会社を知っていただく。その積み重ねが「確かさ」を広げる、という接続をいただきました。</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">04</span><span class="et">拾えた言葉</span></div>
+    <h2>そのまま使える、四人の語彙</h2>
+    <p class="sectlead">今回いちばんの資産は、判断の票数ではなく<b>ご本人の言い回し</b>です。ここから次の言葉を組み立てます。</p>
+
+    <div class="words">
+      <div class="word hot">
+        <div class="w">納得感、腹落ち</div><div class="src">針谷さん</div>
+        <div class="m">満足ではなく納得。ゴールのある状態ではなく、更新され続けるもの。「今の腹落ちは、来年の腹落ちではない」。</div>
+        <div class="use"><b>効かせどころ：</b>Value（社内へ）。「強くなる」の代わりに、変化が続くことを言い当てられます。</div>
+      </div>
+      <div class="word hot">
+        <div class="w">誠実があっての、躍進</div><div class="src">柏木さん</div>
+        <div class="m">根が誠実、幹が創造、葉と花が躍進、土が支える。DNA三語の並列を、階層として言い直したもの。</div>
+        <div class="use"><b>効かせどころ：</b>ストーリー。誠実と躍進はトーンの二択ではなく、<b>土台と見せ方</b>として一本にできます。</div>
+      </div>
+      <div class="word">
+        <div class="w">勇気を持って、チャレンジする</div><div class="src">松本さん</div>
+        <div class="m">教育グループのテーマ。配慮は必要だが、遠慮はしない。失敗を恐れず、まずやってみる。</div>
+        <div class="use"><b>効かせどころ：</b>Concept。DNAの触媒「挑戦」に、初めて体温のある言葉がつきました。</div>
+      </div>
+      <div class="word">
+        <div class="w">法人も、人の集まり</div><div class="src">柏木さん</div>
+        <div class="m">toBであっても、向き合う先は人。法人格に人格を与える、という本プロジェクトの前提と一致します。</div>
+        <div class="use"><b>効かせどころ：</b>Value（社会へ）。toBのまま人を語る根拠になります。</div>
+      </div>
+      <div class="word">
+        <div class="w">ＢＣＣだから、選ばれる</div><div class="src">江川さん</div>
+        <div class="m">単価が低いわけではない。それでも選ばれ、何でも頼られる。お客様の3年先まで考える。</div>
+        <div class="use"><b>効かせどころ：</b>Value（ステークホルダーへ）。「何度でも、頼れる」の裏付けが取れました。</div>
+      </div>
+      <div class="word">
+        <div class="w">この仕事が、何につながっているのか</div><div class="src">松本さん</div>
+        <div class="m">目の前の業務だけを見ると作業になる。つながりが見えると、仕事になる。</div>
+        <div class="use"><b>効かせどころ：</b>Concept・Value。一つの仕事と、その先を結ぶ視点です。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">05</span><span class="et">構造的な発見</span></div>
+    <h2>言葉を選び直すのではなく、置く高さを決める</h2>
+
+    <div class="disc">
+      <div class="dh">柏木さんの最後の一言が、分岐の答えになりました</div>
+      <div class="db">
+        <p>カンパニー制が始まり、他のカンパニーのことがお互いに見えにくくなりつつある。今後カンパニー間の異動があった時、さらに将来それぞれが会社になった時にも、<b>ＢＣＣグループとしての根幹はここにある、と言えるものが必要</b>——このご指摘です。</p>
+        <p>ここまでの分岐は、すべて<b>「自分の実務に照らして選ぶ」</b>ことで生まれていました。定着に立てば事業創出は遠く、事業開発に立てば近い。教育に立てば全社員の理解が最優先になり、管理に立てば会社の根本が優先される。どれも正しく、だからこそ実務で選ぶ限り一つになりません。</p>
+        <p>つまり求められているのは、実務に寄せた言葉ではなく、<b>異動しても、役割が変わっても、カンパニーが分かれても、同じ絵が浮かび続ける高さ</b>に置かれた言葉です。</p>
+
+        <div class="ladder">
+          <div class="l"><div class="lt">これまでの選び方</div><div class="lv">自分の実務と、整合するか</div><div class="ls">立場ごとに答えが変わり、部署の数だけVisionが生まれます。</div></div>
+          <div class="a">→</div>
+          <div class="l"><div class="lt">これからの選び方</div><div class="lv">立場が変わっても、変わらずにいられるか</div><div class="ls">異動・分社を越えて、同じ未来を目指し、価値を生み続けられます。</div></div>
+        </div>
+
+        <p>この基準で見直すと、四人が「変化」を選んだ理由が一本につながります。<b>変化は、誰にでも起きるからです</b>。未経験からの出発も変化、できることが広がるのも変化、異動も変化、カンパニーが分かれることも変化。ＢＣＣが向き合い続けてきたものは、最初から変化でした。</p>
+        <p>そして「創造・事業創出」は、変化と競わせる必要がありません。<b>人が変わることで、新しい仕事が生まれる</b>——変化を起点に、創造をその先に置けば、針谷さん・松本さんは日々の変化を自分ごとにでき、江川さん・柏木さんは会社の根本を見ることができます。躍進と誠実も同じで、柏木さんの整理どおり<b>誠実という土台の上に、躍進という見せ方</b>を重ねれば、トーンの二択は解消します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 -->
+<section style="border-bottom:0;">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">06</span><span class="et">次のドラフトへの示唆</span></div>
+    <h2>この四つを、言葉に落とします</h2>
+
+    <div class="imps">
+      <div class="imp">
+        <div class="il">VISION<br><span style="font-weight:600;font-size:10px;">2案へ</span></div>
+        <div class="ir">
+          <div class="t">変化を軸に据え、その先に創造を置く</div>
+          <div class="d">四人が選んだ<b>変化</b>を土台にしつつ、柏木さんが「載せた方がよい」とされた<b>創造・事業創出</b>を、変化の帰結として内包します。立場が変わっても同じ絵が浮かぶ高さに置きます。</div>
+          <div class="ev"><b>反映する声：</b>全員の案2支持／松本さん「可能性を広げられる未来へ」／柏木さん「誰もやったことのないことを作る」「異動しても変わらないもの」</div>
+        </div>
+      </div>
+
+      <div class="imp c2">
+        <div class="il">CONCEPT<br><span style="font-weight:600;font-size:10px;">2案へ</span></div>
+        <div class="ir">
+          <div class="t">当たり前を軸に、基準の問いへ先に答える</div>
+          <div class="d">三名が支持した<b>当たり前</b>を軸としつつ、松本さんの<b>「当たり前の基準は人によって違う」</b>に答える形にします。もう一案は、松本さんの<b>勇気を持ってチャレンジする</b>を起点に、挑戦の側から立てます。道理は、硬さの指摘を踏まえて表の言葉から外します。</div>
+          <div class="ev"><b>反映する声：</b>針谷さん・江川さん・柏木さん「当たり前」／松本さん「人で勝つ」「基準は人による」／三名「道理は硬い」</div>
+        </div>
+      </div>
+
+      <div class="imp c3">
+        <div class="il">VALUE<br><span style="font-weight:600;font-size:10px;">確定粒度へ</span></div>
+        <div class="ir">
+          <div class="t">裏付けの取れた三つを固め、社内への一つを立て直す</div>
+          <div class="d">「何度でも、頼れる」「期待の、その先へ」は江川さんの実例で、「確かさを、ひろげる」は柏木さん・針谷さんの実感で裏付けが取れました。<b>「働くほど、強くなる」は、松本さんのご指摘を受けて再考</b>します。針谷さんの<b>納得感・腹落ち</b>、松本さんの<b>この仕事が何につながっているのか</b>が手がかりです。</div>
+          <div class="ev"><b>反映する声：</b>江川さん「何でも頼ってくださる」「3年先まで考える」／柏木さん「確かさがぴったり、社会と社内は一体」／針谷さん「まっとう・安心感」／松本さん「強くなるは解釈が定まりにくい」</div>
+        </div>
+      </div>
+
+      <div class="imp">
+        <div class="il">STORY<br><span style="font-weight:600;font-size:10px;">一本化</span></div>
+        <div class="ir">
+          <div class="t">誠実と躍進を、二択から階層へ</div>
+          <div class="d">トーンの好みは分かれましたが、柏木さんの<b>「誠実があっての躍進」</b>が答えになります。誠実を土台として語り、躍進として見せる——二つを一本の物語に統合します。九つの顔は、この方針に沿って<b>四つ</b>に絞り込みます。</div>
+          <div class="ev"><b>反映する声：</b>針谷さん「誠実トーン」／松本さん・柏木さん「躍進トーン」／柏木さん「誠実に裏付けされていない躍進は、足元が定まらない」／松本さん・江川さん「人材創発型・堅実信頼型」</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note"><b>次の作業</b>：この示唆をもとに、Vision 2案・Concept 2案・九つの顔から四つ・統合したストーリー・確定粒度のValue を、次のドラフトとして組み立てます。</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="ft">
+      <b>ＢＣＣ MVV+C ｜ 幹部ヒアリング 統合レポート</b>　／　実施：2026年7月15日〜17日　／　対象：針谷さん・江川さん・松本さん・柏木さん（各60分・個別）<br>
+      Mission：歩みを、とめない。（確定）　／　DNA：創造・誠実・躍進（＋挑戦）　／　トンマナ：e-bcc 準拠（#01408D・游ゴシック・白基調）
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
