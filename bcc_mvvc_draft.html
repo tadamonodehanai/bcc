@@ -32,6 +32,15 @@
   .lead{font-size:15.5px;color:#33445c;max-width:800px;}
   .lead b{color:var(--navy);font-weight:700;}
 
+  .flow3{display:grid;grid-template-columns:1fr 34px 1fr 34px 1fr;align-items:stretch;margin-top:30px;border:1px solid var(--line);border-radius:13px;overflow:hidden;}
+  .flow3 .st{padding:15px 17px;background:#fafcff;}
+  .flow3 .st.now{background:var(--mist-2);}
+  .flow3 .st .n{font-size:10.5px;font-weight:800;letter-spacing:.1em;color:var(--navy-2);}
+  .flow3 .st.now .n{color:var(--navy);}
+  .flow3 .st .t{font-size:14px;font-weight:800;margin-top:4px;line-height:1.5;}
+  .flow3 .st .d{font-size:11.5px;color:#46586f;line-height:1.7;margin-top:5px;}
+  .flow3 .ar{display:flex;align-items:center;justify-content:center;color:var(--navy-2);font-size:16px;background:#fafcff;}
+  @media(max-width:780px){.flow3{grid-template-columns:1fr;}.flow3 .ar{transform:rotate(90deg);height:22px;}}
   section{padding:52px 0;border-bottom:1px solid var(--line);}
   .eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:8px;}
   .num{width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;
@@ -129,6 +138,26 @@
   .valrow2{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:13px;}
 
   /* story */
+  .twin{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+  .twin .tw{padding:13px 18px;border-right:1px solid var(--line);}
+  .twin .tw:last-child{border-right:0;}
+  .twin .tw .lb{font-size:10.5px;font-weight:800;letter-spacing:.06em;color:var(--navy-2);margin-bottom:4px;}
+  .twin .tw .cp{font-size:17px;font-weight:800;line-height:1.5;}
+  .lineage{display:flex;flex-direction:column;gap:11px;margin-bottom:22px;}
+  .lin{display:grid;grid-template-columns:1fr 44px 1fr;align-items:stretch;border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+  .lin.drop{opacity:.72;}
+  .lin .lf{padding:13px 17px;background:#fafcff;}
+  .lin .lf .t{font-size:14px;font-weight:800;}
+  .lin .lf .v{font-size:11.5px;color:var(--sub);margin-top:3px;line-height:1.6;}
+  .lin .la{display:flex;align-items:center;justify-content:center;background:var(--mist);color:var(--navy);font-size:17px;}
+  .lin.drop .la{color:var(--mut);}
+  .lin .lt{padding:13px 17px;}
+  .lin .lt .r{font-size:10.5px;font-weight:800;letter-spacing:.06em;color:#fff;background:var(--navy);border-radius:5px;padding:1px 9px;display:inline-block;margin-bottom:5px;}
+  .lin.drop .lt .r{background:var(--mut);}
+  .lin .lt .n{font-size:15px;font-weight:800;color:var(--navy);}
+  .lin.drop .lt .n{color:var(--sub);font-size:13.5px;}
+  .lin .lt .w{font-size:11.5px;color:#46586f;margin-top:4px;line-height:1.65;}
+  .stitle{font-size:12px;font-weight:800;letter-spacing:.05em;color:#fff;background:var(--navy);border-radius:9px;padding:9px 16px;margin-bottom:12px;display:inline-block;}
   .story{border:1px solid var(--line-2);border-radius:16px;padding:34px 38px;background:linear-gradient(180deg,#f8fbff,#fff);}
   .story p{margin:0 0 18px;font-size:16.5px;line-height:2.2;color:#20334c;}
   .story .hl{color:var(--navy);font-weight:800;}
@@ -164,11 +193,31 @@
 <header>
   <div class="wrap">
     <div class="brand"><span class="logo">ＢＣＣ</span><span class="tag">MVV+C ｜ ドラフト v2</span></div>
-    <div class="kicker">応えるから、力になる</div>
-    <h1>力があるから応えるのではなく、<br>応えるから、力になる。
-      <span class="thin">Concept 確定方向 ／ Vision 2案 ／ Value 5つ ／ ストーリー</span>
+    <div class="kicker">ヒアリングから、ドラフトへ</div>
+    <h1>四人の声を、構造に変えました。
+      <span class="thin">Vision 2案 ／ Concept 2案 ／ 四つの顔 ／ Value 5つ ／ ストーリー2パターン</span>
     </h1>
-    <p class="lead">経営論に立ち返り、DNAの三語を<b>層</b>として整理し直したことで、構造が定まりました。創造は掲げるものではなく、誠実な毎日の結果として現れるもの。その毎日の方法を名指したのが Concept です。</p>
+    <p class="lead">幹部のみなさまへのヒアリングで、<b>一致と分岐</b>がはっきりしました。整理を進めるうちに、分岐が起きた理由も見えてきました。それを踏まえ、経営論と DNA に立ち返って組み直したのが、このドラフトです。<b>言葉を選び直したのではなく、言葉を置く場所を決め直しました。</b></p>
+
+    <div class="flow3">
+      <div class="st">
+        <div class="n">STEP 1 ／ 7月15〜17日</div>
+        <div class="t">ヒアリング</div>
+        <div class="d">針谷さん・江川さん・松本さん・柏木さんに、Vision・Concept・Value へ率直なご意見をいただきました。</div>
+      </div>
+      <div class="ar">→</div>
+      <div class="st">
+        <div class="n">STEP 2</div>
+        <div class="t">統合レポート</div>
+        <div class="d">Vision と「誠実」で一致。一方で分岐は、<b>それぞれの実務に照らして選んだ</b>ために生まれていました。必要なのは、立場が変わっても同じ絵が浮かぶ言葉でした。</div>
+      </div>
+      <div class="ar">→</div>
+      <div class="st now">
+        <div class="n">STEP 3 ／ 本資料</div>
+        <div class="t">ドラフト</div>
+        <div class="d">経営論と DNA に立ち返ると、三語は<b>性質・結果・状態という層</b>でした。その構造の上に、すべてを組み直しています。</div>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -177,7 +226,7 @@
   <div class="wrap">
     <div class="eyebrow"><span class="num">01</span><span class="et">DNA ／ 三つの層</span></div>
     <h2>三語は、種類の違うものでした</h2>
-    <p class="sectlead">創造・誠実・躍進は、並んだ三つの徳目ではありません。経営論での語られ方をたどると、それぞれ<b>性質・行動・状態</b>という別の層にあります。</p>
+    <p class="sectlead">ヒアリングで分岐が起きたのは、<b>言葉の良し悪しではなく、置き場所の問題</b>でした。そこで正本である経営論に立ち返り、DNA の三語がどう語られてきたかをたどり直しています。すると、創造・誠実・躍進は並んだ三つの徳目ではなく、それぞれ<b>性質・結果・状態</b>という別の層にあることが分かりました。</p>
 
     <div class="layers">
       <div class="layer l1">
@@ -208,7 +257,7 @@
 
     <div class="soil"><b>そして、土</b>：三層を支え、外へつなぐ層があります。柏木さんが名指しされたとおり、<b>藤さん・小出さんの視点</b>がここに当たります。三層を、相手に届く言葉へ翻訳する働き──これが <b>Value</b> です。</div>
 
-    <div class="gnote"><b>この整理が効く理由</b>：性質・結果・状態を混ぜて並べると、優先順位の話になります。層として置くと、<b>誠実という性質から毎日の行動が生まれ、その結果として創造が現れ、躍進という状態に至る</b>、と因果でつながります。柏木さんの「誠実があっての躍進」は、この因果を言い当てたものでした。</div>
+    <div class="gnote"><b>この整理が効く理由</b>：性質・結果・状態を混ぜて並べると、優先順位の話になります。層として置くと、<b>誠実という性質から毎日の行動が生まれ、その結果として創造が現れ、躍進という状態に至る</b>、と因果でつながります。柏木さんの「誠実があっての躍進」は、この因果を言い当てたものでした。<br><br>そして、この三つの層を並べたとき、<b>それが MVV+C の構造そのものだと分かります</b>。</div>
   </div>
 </section>
 
@@ -217,13 +266,13 @@
   <div class="wrap">
     <div class="eyebrow"><span class="num">02</span><span class="et">構造</span></div>
     <h2>使命から、スローガンまで</h2>
-    <p class="sectlead">Concept が見出しとして立ち、Tagline が最後に来ます。<b>応える人に出番があり、出番のある状態を「ヒトが活きる」と呼ぶ</b>──見出しと締めが、同じことを別の言葉で言う構造です。</p>
+    <p class="sectlead">Vision・Concept はいずれも<b>2案を対等に</b>検討中です。Concept が見出しとして立ち、Tagline が最後に来ます。<b>応える人に出番があり、出番のある状態を「ヒトが活きる」と呼ぶ</b>──見出しと締めが、同じことを別の言葉で言う構造です。</p>
 
     <div class="spine">
       <div class="sh">MVV+C ＋ Tagline</div>
       <div class="srow"><div class="sl">MISSION<small>なぜ生まれたか</small></div><div class="sv">歩みを、とめない。<small>一人ひとりの歩幅と変化に、向き合い続けます。</small></div><div class="sd">誠実＝性質の層／確定</div></div>
-      <div class="srow"><div class="sl">VISION<small>目指す状態</small></div><div class="sv">人と仕事が、出会いつづける世の中へ。<small>もう一案：誰もが、変わりつづけられる世の中へ。</small></div><div class="sd">躍進＝状態の層／2案</div></div>
-      <div class="srow"><div class="sl">CONCEPT<small>いま、すること</small></div><div class="sv">応えるほど、力になる。<small>応えることで、相手の力になり、自分の力になります。</small></div><div class="sd">毎日の方法／確定方向</div></div>
+      <div class="srow"><div class="sl">VISION<small>目指す状態</small></div><div class="twin"><div class="tw"><div class="lb">案 A</div><div class="cp">誰もが、変わりつづけられる世の中へ。</div></div><div class="tw"><div class="lb">案 B</div><div class="cp">人と仕事が、出会いつづける世の中へ。</div></div></div><div class="sd">躍進＝状態の層／2案を対等に検討</div></div>
+      <div class="srow"><div class="sl">CONCEPT<small>いま、すること</small></div><div class="twin"><div class="tw"><div class="lb">案 1</div><div class="cp">応えるほど、力になる。</div></div><div class="tw"><div class="lb">案 2</div><div class="cp">確かさを、かさねる。</div></div></div><div class="sd">毎日の方法／2案を対等に検討</div></div>
       <div class="srow"><div class="sl">VALUE<small>受け取る価値</small></div><div class="sv">五つの約束<small>DNAを、受け取る相手のことばへ翻訳したもの。</small></div><div class="sd">土＝翻訳の層</div></div>
       <div class="srow slog"><div class="sl">TAGLINE<small>締め</small></div><div class="sv">ヒトが活きる Business Creativeを<small>応えるほど力になる人が、活きている状態。</small></div><div class="sd">外向き／継承</div></div>
     </div>
@@ -235,23 +284,23 @@
   <div class="wrap">
     <div class="eyebrow"><span class="num">03</span><span class="et">VISION ／ 躍進＝状態の層</span></div>
     <h2>二つの状態</h2>
-    <p class="sectlead">どちらも主語は世の中の側にあり、行動の言葉を含みません。立場が変わっても、カンパニーが分かれても、同じ絵が浮かびます。</p>
+    <p class="sectlead">どちらも主語は世の中の側にあり、行動の言葉を含みません。立場が変わっても、カンパニーが分かれても、同じ絵が浮かびます。<b>案Aは幹部4名全員が第一に選ばれた案</b>、<b>案Bはそのご意見を受けて発展させた案</b>です。二案を対等に検討します。</p>
 
     <div class="opts">
       <div class="opt">
-        <div class="oh">案 A ／ 変化が、起きつづける</div>
+        <div class="oh">案 A ／ 変化が、起きつづける　〈幹部4名が第一に選択〉</div>
         <div class="ob">
           <div class="copy">誰もが、変わりつづけられる世の中へ。</div>
           <div class="pic">できなかったことが、できるようになる。年齢も、経歴も、いまいる場所も問われず、変わろうと思えば変われる。その状態が保たれている風景です。</div>
-          <div class="meta"><b>強み</b>：幹部4名全員が第一に選ばれた言葉です。誰もが自分ごとにできます。<br><b>視点</b>：人の側から見た未来。変化の<b>持続</b>を描きます。</div>
+          <div class="meta"><b>選ばれた理由</b>：針谷さん「スタート地点が手前の方が多い」／江川さん「考えるほどＢＣＣらしい」／松本さん「全社員に浸透する」／柏木さん「変わりたい方を支える会社」。四人が別々の理由で同じ案に到達されました。<br><b>視点</b>：人の側から見た未来。変化の<b>持続</b>を描きます。</div>
         </div>
       </div>
       <div class="opt">
-        <div class="oh">案 B ／ 変化が、噛み合いつづける</div>
+        <div class="oh">案 B ／ 変化が、噛み合いつづける　〈ヒアリングを受けて発展〉</div>
         <div class="ob">
           <div class="copy">人と仕事が、出会いつづける世の中へ。</div>
           <div class="pic">できるようになった人が、その人を必要としていた仕事に就いている。働ける人はいるのに機会がなく、仕事はあるのに担い手がいない──その隔たりが解けつづけている風景です。</div>
-          <div class="meta"><b>強み</b>：ＢＣＣが起こしてきた現象そのものを、事例に依らず一語で言い当てます。取引先・株主・パートナー・社員が、同じ一枚を見られます。<br><b>視点</b>：世の中の側から見た未来。変化の<b>接続</b>を描きます。</div>
+          <div class="meta"><b>発展させた理由</b>：案Aは人の側から見た未来のため、取引先・株主・パートナーからは自社との関わりが見えにくい面があります。同じ現象を世の中の側から言い当て、全ステークホルダーが同じ一枚を見られる形にしました。<br><b>視点</b>：世の中の側から見た未来。変化の<b>接続</b>を描きます。</div>
         </div>
       </div>
     </div>
@@ -264,62 +313,92 @@
 <section>
   <div class="wrap">
     <div class="eyebrow"><span class="num">04</span><span class="et">CONCEPT ／ 毎日の方法</span></div>
-    <h2>創造を掲げずに、創造に至る</h2>
-    <p class="sectlead">Concept が名指すのは、創造そのものではなく、<b>創造が結果として生まれてしまう毎日の方法</b>です。</p>
+    <h2>三つの思想が、二案になりました</h2>
+    <p class="sectlead">幹部のみなさまにお示しした<b>三つの思想</b>が、ヒアリングを経てどうなったかです。二つを継承し、一つは表の言葉から外しました。継承した二つは、いずれも<b>創造が結果として生まれる毎日の方法</b>として書き直しています。</p>
 
-    <div class="cfix">
-      <div class="ch">
-        <div class="c">応えるほど、力になる。</div>
-        <div class="s">相手の力になり、自分の力になる。</div>
+    <div class="lineage">
+      <div class="lin">
+        <div class="lf"><div class="t">思想 1 ／ 当たり前・凡事<br><span style="font-size:12.5px;color:var(--navy);">「当たり前を、武器に。」</span></div><div class="v">針谷さん・江川さん・柏木さんが第一に選択（最多）。柏木さんは即答で「ここができてこそ土台になる」。</div></div>
+        <div class="la">→</div>
+        <div class="lt"><span class="r">継承</span><div class="n">確かさを、かさねる。</div><div class="w">最多支持のため継承します。ただし松本さんの<b>「当たり前の基準は、人によって違う」</b>を受け、<b>基準の話から、積み重ねの話へ</b>置き換えました。誰の基準かを問わずに済みます。さらに Value <b>「確かさを、ひろげる。」</b>と語を共有し、<b>かさねたものを、ひろげる</b>という一本の鎖になります。</div></div>
       </div>
-      <div class="cb">
-        <div class="redef">
-          <div class="r"><div class="rt">これまでの前提</div><div class="rv">力があるから、応えられる。</div></div>
-          <div class="a">→</div>
-          <div class="r"><div class="rt">ＢＣＣの再定義</div><div class="rv">応えようとするから、力がつく。</div></div>
-        </div>
 
-        <div class="why">
-          <div class="w"><div class="t">二重の「力になる」</div><div class="d">相手の力になることと、自分の力になることが、同じ一語で同時に起きます。片側だけの言葉にならず、目指す関係性そのものを名指しています。</div></div>
-          <div class="w"><div class="t">創造が、結果として入る</div><div class="d">応え続けた結果、扱える幅が広がり、やがて前例のない仕事や資格が生まれてきました。創造を掲げずに、創造を説明できます。</div></div>
-          <div class="w"><div class="t">立場を選ばない</div><div class="d">幹部はメンバーに、営業は取引先に、管理は社内と社外に応えます。役割が変わっても、基準は変わりません。</div></div>
-          <div class="w"><div class="t">実務の裏付け</div><div class="d">江川さんのネットワークからセキュリティへの広がり、松本さんの「できないからできるを増やす」、柏木さんの「見たことのないことに対応する」。すべて同じ因果です。</div></div>
-        </div>
+      <div class="lin">
+        <div class="lf"><div class="t">思想 3 ／ 人で勝つ<br><span style="font-size:12.5px;color:var(--navy);">「人で、勝つ。」</span></div><div class="v">松本さんが第一に選択。針谷さん・江川さんからも「像が浮かぶ」「思いが乗っている」と評価。</div></div>
+        <div class="la">→</div>
+        <div class="lt"><span class="r">継承</span><div class="n">応えるほど、力になる。</div><div class="w">人の力で選ばれる、という思想を継承します。針谷さんの<b>「人はいろいろな側面を持つので、基準になりにくい」</b>を受け、<b>人を主語から外し、人がすることを動詞に</b>しました。</div></div>
+      </div>
 
-        <div class="judge">
-          <div class="jt">判断基準</div>
-          <div class="jq">これは、誰かの力になるか。</div>
-          <div class="jd">引き受けるか収めるか、自分でやるか任せるか、踏み込むか控えるか。岐路のたびに使えます。<b>引き際も判定できます</b>──誰の力にもならない仕事であれば、受けないという判断が立ちます。</div>
-        </div>
-
-        <div class="note" style="margin-top:16px;"><b>「こたえを、つくる。」からの進化</b>：応えることを核とする点は同じで、本案は<b>その先の因果まで言えています</b>。答えと応えの二重は、「応える」の中に保たれています。</div>
+      <div class="lin drop">
+        <div class="lf"><div class="t">思想 2 ／ 道理・筋<br><span style="font-size:12.5px;color:var(--sub);">「道理を、武器に。」</span></div><div class="v">第一選択はなし。針谷さん・江川さん・松本さんの三名から「硬い」「意味がつかみにくい」とのご指摘。</div></div>
+        <div class="la">→</div>
+        <div class="lt"><span class="r">表の言葉からは外す</span><div class="n">意味は、案2に引き継ぎます</div><div class="w">筋を通して正しく働くという中身は、<b>「確かになる」</b>の中に保たれています。読み手に伝わりにくい語を、伝わる語に置き換えた形です。</div></div>
       </div>
     </div>
+
+    <div class="opts">
+      <div class="opt">
+        <div class="oh">案 1 ／ 思想3「人で勝つ」の継承</div>
+        <div class="ob">
+          <div class="copy">応えるほど、力になる。</div>
+          <div class="pic">相手の力になることと、自分の力になることが、同じ一語で同時に起きます。応え続けるほどに扱える幅が広がり、次の求めに応えられるようになる。前例のない仕事や資格は、その結果として生まれてきました。</div>
+          <div class="meta"><b>再定義</b>：力があるから応えられる　→　<b>応えようとするから、力がつく</b><br><b>判断基準</b>：これは、誰かの力になるか。<br><b>裏付け</b>：江川さん（ネットワークからセキュリティへの広がり／単価ではなくＢＣＣだから選ばれる）／松本さん「できないからできるを増やす」／柏木さん「見たことのないことに対応する」</div>
+        </div>
+      </div>
+      <div class="opt">
+        <div class="oh">案 2 ／ 思想1「当たり前」の継承</div>
+        <div class="ob">
+          <div class="copy">確かさを、かさねる。</div>
+          <div class="pic">一日ぶんの差は、わずかかもしれません。それでも、かさねた分だけ仕事は確かなものになり、確かさは信用になり、信用が次の仕事を連れてきます。ＢＣＣが二十年をかけて築いてきたやり方そのものです。</div>
+          <div class="meta"><b>再定義</b>：確かさは、一度そなえれば済むもの　→　<b>確かさは、かさねてつくるもの</b><br><b>判断基準</b>：それは、かさねられるやり方か。<br><b>Value との鎖</b>：確かさを、かさねる（内で・毎日）　→　確かさを、ひろげる（外へ・社会に）<br><b>裏付け</b>：柏木さん「一番大事なのは間違えないこと」「正確に、早く」／針谷さん「まっとうな場所で、地に足をつけて」／松本さん「毎月同じ研修でも、その人にとっては一回目。丁寧であるべき」／江川さん「二十年、ＢＣＣのやり方が染み込んでいる」</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note"><b>二案の関係</b>：案1は<b>相手に向かう</b>ことから力が生まれると言い、案2は<b>日々をかさねる</b>ことが確かさをつくると言います。構文をあえて揃えていないため、二案が別物として立ち、比較しやすくなっています。どちらも創造を掲げずに、創造へ至る道筋を示し、岐路でそのまま判断に使えます。</div>
   </div>
 </section>
 
 <!-- 05 FACES -->
 <section>
   <div class="wrap">
-    <div class="eyebrow"><span class="num">05</span><span class="et">二つの顔</span></div>
-    <h2>Vision の選択で、性格が決まります</h2>
-    <p class="sectlead">Concept が定まったため、九通りは<b>二つ</b>になりました。違いは、どこから語り始めるかです。</p>
+    <div class="eyebrow"><span class="num">05</span><span class="et">四つの顔</span></div>
+    <h2>Vision × Concept で、性格が決まります</h2>
+    <p class="sectlead">九通りが、四つになりました。各マスは、その組み合わせが生む<b>会社の性格</b>と、そのとき最初に立つ Value です。</p>
 
     <div class="faces">
       <div class="face">
-        <div class="fh">A × Concept ／ 誰もが、変わりつづけられる</div>
+        <div class="fh">A × 1 ／ 変わりつづけられる × 応えるほど、力になる</div>
         <div class="fb">
           <div class="nm">可能性拡張型</div>
           <div class="ds">応えることで人が力をつけ、その力がまた次の変化を生む。人の可能性が広がりつづける会社として立ちます。共感の広さが強みです。</div>
-          <div class="cv">最初に立つValue ／ この仕事が、次をつくる。</div>
+          <div class="cv">最初に立つValue ／ こたえを、つくる。</div>
           <div class="cw">松本さん・針谷さんの実感に近い</div>
         </div>
       </div>
       <div class="face">
-        <div class="fh">B × Concept ／ 人と仕事が、出会いつづける</div>
+        <div class="fh">A × 2 ／ 変わりつづけられる × 確かさを、かさねる</div>
+        <div class="fb">
+          <div class="nm">堅実成長型</div>
+          <div class="ds">確かさをかさねた人が、着実に変わりつづける。派手さより積み重ねで人を育てる会社として立ちます。定着と信頼が強みです。</div>
+          <div class="cv">最初に立つValue ／ 何度でも、頼れる。</div>
+          <div class="cw">針谷さん・柏木さんの実感に近い</div>
+        </div>
+      </div>
+      <div class="face">
+        <div class="fh">B × 1 ／ 出会いつづける × 応えるほど、力になる</div>
         <div class="fb">
           <div class="nm">需給接続型</div>
           <div class="ds">応えることで力をつけた人が、その人を必要としていた仕事に届く。隔たりを解きつづける会社として立ちます。事業の説明力が強みです。</div>
+          <div class="cv">最初に立つValue ／ 期待の、その先へ。</div>
+          <div class="cw">江川さん・柏木さんの実感に近い</div>
+        </div>
+      </div>
+      <div class="face">
+        <div class="fh">B × 2 ／ 出会いつづける × 確かさを、かさねる</div>
+        <div class="fb">
+          <div class="nm">信頼基盤型</div>
+          <div class="ds">かさねた確かさで選ばれつづけることが、人と仕事の出会いを絶やさない。基盤として社会に置かれる会社として立ちます。株主・取引先への説得力が強みです。</div>
           <div class="cv">最初に立つValue ／ 確かさを、ひろげる。</div>
           <div class="cw">柏木さん・江川さんの実感に近い</div>
         </div>
@@ -342,10 +421,10 @@
     </div>
     <div class="valrow2">
       <div class="val"><div class="src">社会へ ／ 翻訳</div><div class="name">確かさを、ひろげる。</div><div class="en">Rewarding Society</div><div class="exp">正しく働く人が一人ずつ増え、世の中の仕事が確かになっていく。</div><div class="how"><b>どうやって：</b>真っ当な仕事を、一つずつ増やすことで。</div></div>
-      <div class="val rev"><div class="src">社内へ ／ 翻訳（改訂）</div><div class="name">この仕事が、次をつくる。</div><div class="en">Keep Growing</div><div class="exp">目の前の一つが、次の仕事と、次の自分をつくっていく。</div><div class="how"><b>どうやって：</b>事業が人をつくり、人が事業をつくるから。</div></div>
+      <div class="val rev"><div class="src">社内へ ／ 翻訳（改訂）</div><div class="name">こたえを、つくる。</div><div class="en">Keep Growing</div><div class="exp">教わった正解をなぞるのではなく、自分でこたえを出せるようになっていく。</div><div class="how"><b>どうやって：</b>目の前の求めに向き合うことが、そのまま学びになるから。</div></div>
     </div>
 
-    <div class="note"><b>改訂の理由</b>：従来案「働くほど、強くなる。」について、松本さんから解釈が定まりにくいとのご指摘をいただきました。「今の仕事が未来をつくっていく、というニュアンスなら」というご提案に沿っています。針谷さんの「今の腹落ちは、来年の腹落ちではない」とも重なります。</div>
+    <div class="note"><b>五つ目「こたえを、つくる。」について</b>：従来案「働くほど、強くなる。」は、松本さんから解釈が定まりにくいとのご指摘をいただきました。<b>こたえ</b>には、自分で出す<b>答え</b>と、相手の求めに応じる<b>応え</b>の二つが重なります。ＢＣＣが「教える会社」ではなく<b>「学べる会社」</b>であることの、社内への約束です。松本さんの「自分で考えずに答えを求める人が増えている」という懸念、針谷さんの「今の腹落ちは、来年の腹落ちではない」に、そのまま応えます。<br><br><b>Concept との関係</b>：案1「応えるほど、力になる。」を選ぶ場合、Concept が方法を、この Value がその結果として社員が受け取るものを言う関係になります。案2「確かさを、かさねる。」を選ぶ場合は、二語が重ならず独立して立ちます。</div>
   </div>
 </section>
 
@@ -354,12 +433,13 @@
   <div class="wrap">
     <div class="eyebrow"><span class="num">07</span><span class="et">MVV+C ストーリー</span></div>
     <h2>使命から、スローガンまでを一本で</h2>
-    <p class="sectlead">Concept を見出しに立て、Tagline で締めます。<span style="font-size:13px;color:var(--sub);">※ 下は Vision 案B の場合です。案Aでも同じ骨格で書き換えられます。</span></p>
+    <p class="sectlead">Concept を見出しに立て、Tagline で締めます。二つのパターンを、<b>それぞれ相性のよい組み合わせ</b>で書き上げました。どの組み合わせでも、同じ骨格で書き換えられます。</p>
 
+    <div class="stitle">パターン 1 ／ A × 1 ── 誰もが、変わりつづけられる × 応えるほど、力になる</div>
     <div class="story">
       <p>歩幅は、人それぞれ違います。<br>速い人がいて、ゆっくりな人がいて、いま立ち止まりそうな人がいる。<br>ＢＣＣは、その一人ひとりの<span class="hl">歩みを、とめない</span>ために生まれました。</p>
 
-      <p>世の中には、働ける人がいるのに機会がなく、仕事があるのに担い手がいない、という隔たりがあります。<br>私たちは、その隔たりを一つずつ解いてきました。<br>できるようになった人が、その人を必要としていた仕事に就いている。<br>目指しているのは、<span class="hl">人と仕事が、出会いつづける世の中</span>です。</p>
+      <p>パソコンに触れたことのなかった人が、客先で引き合いを取ってくる。<br>別の道を歩いてきた人が、介護の仕事で暮らしを立てている。<br>年齢も、経歴も、いまいる場所も問われません。<br>目指しているのは、<span class="hl">誰もが、変わりつづけられる世の中</span>です。</p>
 
       <p>そのために、私たちがしていることは、ひとつだけです。<br>目の前の求めに、応え切ること。<br>応えるほどに、扱える幅は広がり、次の求めに応えられるようになる。<br>力があるから応えるのではありません。応えるから、力になるのです。</p>
 
@@ -367,20 +447,41 @@
 
       <p>派遣に営業という仕事をつくったのも、レクリエーション介護士という資格をつくったのも、新しさを掲げたからではありません。<br>目の前の求めに応え続けた、その結果でした。</p>
 
-      <p>だからお客様には<span class="hl">「期待の、その先へ」</span>を。<br>社会には<span class="hl">「確かさを、ひろげる」</span>を。<br>働く仲間には<span class="hl">「この仕事が、次をつくる」</span>を、お約束します。</p>
+      <p>だからお客様には<span class="hl">「期待の、その先へ」</span>を。<br>社会には<span class="hl">「確かさを、ひろげる」</span>を。<br>働く仲間には<span class="hl">「こたえを、つくる」</span>を、約束します。</p>
 
-      <p>応えるほどに力になり、力になった人には、出番が生まれる。<br>私たちが、その状態をこう呼んでいます。</p>
+      <p>応えるほどに力になり、出番が生まれる。</p>
+
+      <span class="slog">ヒトが活きる Business Creativeを</span>
+    </div>
+
+    <div class="stitle" style="margin-top:34px;">パターン 2 ／ B × 2 ── 人と仕事が、出会いつづける × 確かさを、かさねる</div>
+    <div class="story">
+      <p>世の中には、隔たりがあります。<br>働ける人がいるのに、機会がない。仕事があるのに、担い手がいない。<br>ＢＣＣは、その隔たりの前で立ち止まる人の<span class="hl">歩みを、とめない</span>ために生まれました。</p>
+
+      <p>できるようになった人が、その人を必要としていた仕事に就いている。<br>ひとつ埋まるたびに、また次の隔たりが解けていく。<br>目指しているのは、<span class="hl">人と仕事が、出会いつづける世の中</span>です。</p>
+
+      <p>そのために選んできたのは、特別な方法ではありません。<br>やるべきことを、やるべきとおりに。今日も、明日も。<br>一日ぶんの差は、わずかかもしれません。<br>それでも、かさねた分だけ仕事は確かになり、確かさは信用になります。</p>
+
+      <span class="head">確かさを、かさねる。</span>
+
+      <p>派遣に営業という仕事をつくったのも、レクリエーション介護士という資格をつくったのも、新しさを掲げたからではありません。<br>確かな仕事をかさねた、その結果でした。</p>
+
+      <p>そうしてかさねた確かさを、こんどは外へひろげていきます。<br>お客様には<span class="hl">「何度でも、頼れる」</span>を。<br>社会には<span class="hl">「確かさを、ひろげる」</span>を。<br>働く仲間には<span class="hl">「こたえを、つくる」</span>を、約束します。</p>
+
+      <p>かさねるほどに確かになり、出番が生まれる。</p>
 
       <span class="slog">ヒトが活きる Business Creativeを</span>
     </div>
 
     <div class="storymap">
-      <div class="sm"><b>第1段落 ／ Mission</b>歩幅の違いから入り、存在の理由を示します。</div>
-      <div class="sm"><b>第2段落 ／ Vision</b>解いてきた隔たりを述べ、目指す状態を描きます。</div>
+      <div class="sm"><b>第1段落 ／ Mission</b>入口を変えています。1は歩幅の違いから、2は世の中の隔たりから。</div>
+      <div class="sm"><b>第2段落 ／ Vision</b>目指す状態を、行動の言葉を使わずに描きます。</div>
       <div class="sm"><b>第3段落＋見出し ／ Concept</b>方法を述べ、反転を一行で立てます。</div>
-      <div class="sm"><b>第4段落 ／ 創造</b>実績を、掲げた成果ではなく結果として置きます。</div>
-      <div class="sm"><b>第5〜6段落 ／ Value → Tagline</b>三方向へ約束を渡し、状態の名前で締めます。</div>
+      <div class="sm"><b>第4段落 ／ 創造</b>同じ実績を、それぞれの方法の結果として置きます。</div>
+      <div class="sm"><b>第5〜6段落 ／ Value → Tagline</b>約束を渡し、出番の一行を経て、状態の名前で締めます。</div>
     </div>
+
+    <div class="note"><b>二つの違い</b>：パターン1は<b>人の可能性</b>から語り、パターン2は<b>世の中の隔たり</b>から語ります。渡す Value も、1は「期待の、その先へ」、2は「何度でも、頼れる」と変わります。最後の一行と締めは共通で、どちらも同じ場所に着地します。</div>
   </div>
 </section>
 
